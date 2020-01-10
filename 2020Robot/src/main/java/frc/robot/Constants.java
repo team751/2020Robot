@@ -17,6 +17,8 @@ package frc.robot;
  */
 public final class Constants {
 
+    public static int mainCameraDeviceNum = 0;
+    
     public static int LEDPort = 0;
     public static int LEDLength = 10;
 }

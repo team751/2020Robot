@@ -9,8 +9,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.core751.commands.camera.AssignCameraCommand;
+import frc.robot.core751.commands.camera.SwitchCameraCommand;
 import frc.robot.core751.commands.lightstrip.TeamColorLights;
+import frc.robot.core751.subsystems.Camera;
 import frc.robot.core751.subsystems.LightStrip;
 
 /**
@@ -21,14 +25,16 @@ import frc.robot.core751.subsystems.LightStrip;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  // private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-
-  // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   private final LightStrip lightStrip = new LightStrip(Constants.LEDPort, Constants.LEDLength);
+  private final Camera camera = new Camera(Constants.mainCameraDeviceNum);
+
+  private final SwitchCameraCommand m_switchCameraCommand = new SwitchCameraCommand(camera, 
+                                                                                    Constants.mainCameraDeviceNum);
+  private final AssignCameraCommand m_assignCameraCommand = new AssignCameraCommand(camera, 
+                                                                                    Constants.mainCameraDeviceNum);
 
   private final TeamColorLights teamColorLights = new TeamColorLights(lightStrip);
-
 
 
   /**
@@ -47,6 +53,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     lightStrip.setDefaultCommand(teamColorLights);
+    camera.setDefaultCommand(m_assignCameraCommand);
   }
 
 
