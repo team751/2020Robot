@@ -1,6 +1,3 @@
 [submodule "\"2020Robot/src/main/java/frc/robot/core751\""]
 	path = \"2020Robot/src/main/java/frc/robot/core751\"
 	url = https://github.com/team751/core751.git
-[submodule "core751"]
-	path = core751
-	url = https://github.com/team751/core751.git
