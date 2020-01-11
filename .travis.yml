@@ -8,3 +8,6 @@ before_install:
   -y && sudo apt update
 - sudo apt install default-jdk frc-toolchain -y
 script: cd 2020Robot/ && chmod 777 gradlew && ./gradlew assemble
+notifications:
+  slack:
+    secure: kAvpUnSbxqgRWpAifFJp/zkRFyBY+LuOS0nJSOy1DTwtakiDzs8Y/eEGjbQMkrjwjgVIHOvqGLw8MVaSfdB4RRFqDNSU+uM88ttd5LQ1AZBo0SmVWZazwz2GD28kvYFoTYEZiZMbx+JIuRdQiUaA0a6kk2M0aoC4qwasfekXrw+pwkrUS+aKebzewbRkSl9yAoXCF5d7V76eE9wQqC3HwJjBh+fIGwLui19YCbSXfqsmqkhTZ8tQYE9Inx2rmyc20abr7BDtVIGNxbWqtM+7cGa2nSixAz9ZR7oWKXSAcO9ZADCGUGYt4X9EYeMSNhTHUQZa4ATzixaNIWYllz9ipE4OlylmxG4SfeY5jqPyg/7xRe3Z0IamjUIAYnf+uzWaMcQeUcgcE21WGL0/wMUYDxBXvue8WQ5quV16FrRbV2pKrXuToWm+Z6f03QWJXd5z1l5j2v+ZRt+/SEdJt+vSW5KtnJFJ1UfHvqWZ3Lw4XpBNBPSmRC9oniyZQjNNlBl6zdLwExr9bNc33OLZxDuSiaI/5pnYzH99LxrwVFKORVkG9SxswKC39WvEarBD1ssfcTPP/8fvi3YNDCqsT9v/WTRpfa5P5f8UpDmLswZuYqiXz0ddxv/9W06y/VVUrPQxuuIFZ1wIOXzyomjx9X50bDq3enM20e4WQXcNo+ZZSfs=
