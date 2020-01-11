@@ -2,7 +2,6 @@ package frc.robot.core751.subsystems;
 
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -12,8 +11,7 @@ import frc.robot.core751.wrappers.WCANSparkMax;
 public class DifferentialDriveTrain extends SubsystemBase {
 
     public enum driveMotor {
-        kSparkMaxBrushless,
-        kPWMVictorSPX,
+        kSparkMaxBrushless;
     }
 
     private SpeedController[] leftArray;
@@ -49,20 +47,10 @@ public class DifferentialDriveTrain extends SubsystemBase {
                 for (int i = 0; i < rightArray.length; i++) {
                     rightArray[i] = new WCANSparkMax(right[i], MotorType.kBrushless);
                 }
-            break;
-            case kPWMVictorSPX:
-                leftArray = new PWMVictorSPX[left.length];
-                rightArray = new PWMVictorSPX[right.length];
-                for (int i = 0; i < leftArray.length; i++) {
-                    leftArray[i] = new PWMVictorSPX(left[i]);
-                }
-                for (int i = 0; i < rightArray.length; i++) {
-                    rightArray[i] = new PWMVictorSPX(right[i]);
-                }
+                this.leftGroup = arrayToGroup(leftArray);
+                this.rightGroup = arrayToGroup(rightArray);
             break;
         }
-        this.leftGroup = arrayToGroup(leftArray);
-        this.rightGroup = arrayToGroup(rightArray);
 
         this.differentialDrive = new DifferentialDrive(leftGroup, rightGroup);
 
