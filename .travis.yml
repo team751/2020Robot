@@ -7,7 +7,9 @@ before_install:
 - sudo apt-add-repository ppa:wpilib/toolchain -y && sudo add-apt-repository ppa:openjdk-r/ppa
   -y && sudo apt update
 - sudo apt install default-jdk frc-toolchain -y
-script: ls && chmod 777 gradlew && ./gradlew assemble
+- chmod 777 gradlew
+- ls
+script: ./gradlew assemble
 notifications:
   slack:
     secure: kpA9XK1bRI0u/E+G+W7H/RuhPrI1+knB4bN9HhM3wZYB6D8O93cZg23vKLJp4DfzNn4dyO23Brjj1YJXmDdMy56m1cX1RMc0gBTSsd2j0qrwN9qA0brVTeflDGB6jk1BOqh+c1JLCum2YFcO5OCN4P1Ks4xZZEvxDuf5rJ94sdOoG7YZFpLjDllT+Mhe33Q8HFkVzQvQlTFr7giKtRSpgzJ7KgF52ZIE+HUV8FJL0+yes8i7fEiYh6jpyUEtn3XqfZf3Y0Xr/8LrG8sdxyAlTbwpkGG8k10LijfyQr2VdxwByeVTkNmmui7SpOxG31ElHua0mG7tuEqhoIKi1hCugNQ5sNPYpO4Gk6pKQKrACRLXLt1rzZmiCS5Jj7awvokisOuouzqNJ4ZEGwwwIZXUBUYqT0rz6U4XCfX5GxHKj35yWjHBe0B5Fjk6k8wv82oGGWIJdou4hQl4gQCbZyGqbT0wTASuiOORzg5nPI629ucWaZyCGZ6dRCdS6xZecb/aAUaZYctSiGVlSwfgN5FmmJ5tNpqcVBvRpf/7cRWlzPQlhiuY7D3+zBXxSf1XygYg/6lr3TzW/hcksUZUVskQhJ3YdmN86u/PaPq/lxBCSWToGdZMV6rtyIJax1R2V7Sd2O+sAJ3By8XOY1pWUo6Y3fAc8qSZnD4g5+ETcVK5CII=
