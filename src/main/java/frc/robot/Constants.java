@@ -26,4 +26,10 @@ public final class Constants {
 
     public static Port colorSensorPort = Port.kOnboard;
     public static float proximityThreshhold = 200;
+
+    // PIDTrajectory constants
+    public static double trackWidthMeters = 0.0762; // horizontal distance between the wheels 
+                                                    // (2019 robot = 0.0762 meters (3 inches))
+    public static double maxPIDTrajectoryDriveVolts;
+    public static double maxPIDTrajectoryDriveAcceleration; // m/sec^2
 }
