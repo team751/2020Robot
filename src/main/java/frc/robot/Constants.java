@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.I2C.Port;
+import frc.robot.core751.subsystems.SmartDifferentialDriveTrain.smartDriveMotor;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -21,9 +22,18 @@ import edu.wpi.first.wpilibj.I2C.Port;
  */
 public final class Constants {
 
+    public static int kP;
+    public static int kI;
+    public static int kD;
+
     public static int LEDPort = 0;
     public static int LEDLength = 10;
 
     public static Port colorSensorPort = Port.kOnboard;
     public static float proximityThreshhold = 200;
+
+    public static int driveStickPort = 0;
+    public static smartDriveMotor smartDriveMotorType = smartDriveMotor.kPWMVictorSPX;
+    public static int[] rightPorts = {0, 1, 2};
+    public static int[] leftPorts = {3, 4, 5};
 }
