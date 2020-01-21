@@ -21,11 +21,6 @@ import frc.robot.core751.subsystems.SmartDifferentialDriveTrain.smartDriveMotor;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
-
-    public static int kP;
-    public static int kI;
-    public static int kD;
-
     public static int LEDPort = 0;
     public static int LEDLength = 10;
 
