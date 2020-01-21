@@ -21,9 +21,18 @@ import edu.wpi.first.wpilibj.I2C.Port;
  */
 public final class Constants {
 
+    public static int driverstickPort = 0;
+    public static int leftTrigger = 2;
+    public static int rightTrigger = 3;
+
     public static int LEDPort = 0;
     public static int LEDLength = 10;
 
-    public static Port colorSensorPort = Port.kOnboard;
+    public static Port firstColorSensorPort = Port.kOnboard;
+    public static Port secondColorSensorPort = Port.kMXP;
     public static float proximityThreshhold = 200;
+    public static int panelSpinMotorID = 1;
+    public static int panelPositionMotorID = 2;
+    public static int panelTopLimitPin = 0;
+    public static int panelBottomLimitPin = 1;
 }
