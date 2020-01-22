@@ -147,12 +147,8 @@ public class Panel extends SubsystemBase {
 
     public WheelColor getFirstColor() {
         Color firstDetectedColor = firstColorSensor.getColor();
-
         ColorMatchResult firstMatch = colorMatcher.matchClosestColor(firstDetectedColor);
         
-        
-
-
         if (firstMatch.color == kRedTarget) {
             return WheelColor.BLUE;
         } else if (firstMatch.color == kBlueTarget) {
@@ -170,19 +166,17 @@ public class Panel extends SubsystemBase {
         Color firstDetectedColor = firstColorSensor.getColor();
         Color secondDetectedColor = secondColorSensor.getColor();
         double[] ret = new double[]{firstDetectedColor.red + secondDetectedColor.red, firstDetectedColor.green + secondDetectedColor.green, firstDetectedColor.blue + secondDetectedColor.blue};
+        
         ret[0] /=2;
         ret[1] /=2;
         ret[2] /=2;
         return ret;
-
     }
 
     public WheelColor getSecondColor() {
         Color secondDetectedColor = secondColorSensor.getColor();
-
         ColorMatchResult secondMatch = colorMatcher.matchClosestColor(secondDetectedColor);
         
-
         if (secondMatch.color == kRedTarget) {
             return WheelColor.BLUE;
         } else if (secondMatch.color == kBlueTarget) {
