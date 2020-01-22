@@ -34,21 +34,19 @@ public class Panel extends SubsystemBase {
         public static WheelColor getTargetColor(){
             String gameData;
             gameData = DriverStation.getInstance().getGameSpecificMessage();
-            if(gameData.length() > 0)
-            {
-            switch (gameData.charAt(0))
-            {
-                case 'B' :
-                return BLUE;
-                case 'G' :
-                return GREEN;
-                case 'R' :
-                return RED;
-                case 'Y' :
-                return YELLOW;
-                default :
-                return UNKNOWN;
-            }
+            if(gameData.length() > 0) {
+                switch (gameData.charAt(0)) {
+                    case 'B' :
+                    return BLUE;
+                    case 'G' :
+                    return GREEN;
+                    case 'R' :
+                    return RED;
+                    case 'Y' :
+                    return YELLOW;
+                    default :
+                    return UNKNOWN;
+                }
             } else {
             return UNKNOWN;
             }
