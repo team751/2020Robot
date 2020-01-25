@@ -1,12 +1,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.core751.commands.i2cmultiplexer.MultiplexedI2CCommandBase;
+import frc.robot.core751.subsystems.I2CMultiplexer;
 import frc.robot.core751.subsystems.LightStrip;
 import frc.robot.subsystems.Wheel;
 import frc.robot.subsystems.Wheel.WheelColor;
 
-public class SensorLights extends CommandBase {
+public class SensorLights extends MultiplexedI2CCommandBase {
 
     public LightStrip lightStrip;
     public Wheel wheel;
@@ -14,7 +15,10 @@ public class SensorLights extends CommandBase {
     public int[] currentHSV;
     public WheelColor lastColor;
 
-    public SensorLights(LightStrip lightStrip, Wheel wheel) {
+    public SensorLights(I2CMultiplexer i2cMultiplexer, 
+                        int multiplexerI2CDeviceId, 
+                        LightStrip lightStrip, Wheel wheel) {
+        super(i2cMultiplexer, multiplexerI2CDeviceId);
         this.lightStrip = lightStrip;
         this.wheel = wheel;
         addRequirements(wheel, lightStrip);
@@ -39,6 +43,8 @@ public class SensorLights extends CommandBase {
     @Override
     
     public void execute(){
+        super.execute();
+
         WheelColor w = this.wheel.getColor();
         if (w != wheelColor) {
             this.lastColor = wheelColor;

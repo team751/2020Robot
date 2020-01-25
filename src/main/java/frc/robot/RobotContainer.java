@@ -9,10 +9,14 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.SensorLights;
 import frc.robot.core751.commands.lightstrip.TeamColorLights;
+import frc.robot.core751.subsystems.DifferentialDriveTrain;
+import frc.robot.core751.subsystems.I2CMultiplexer;
 import frc.robot.core751.subsystems.LightStrip;
+import frc.robot.core751.wrappers.BNO055;
 import frc.robot.subsystems.Wheel;
 
 /**
@@ -27,12 +31,19 @@ public class RobotContainer {
 
   // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  private final LightStrip lightStrip = new LightStrip(Constants.LEDPort, Constants.LEDLength);
+  public final BNO055 bno055 = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS,
+                                                  BNO055.vector_type_t.VECTOR_EULER);
 
+  private final LightStrip lightStrip = new LightStrip(Constants.LEDPort, Constants.LEDLength);
+  private final I2CMultiplexer i2cMultiplexer = new I2CMultiplexer(Constants.I2CMultiplexerPort);
   private final Wheel wheel = new Wheel(Constants.colorSensorPort);
 
-  private final TeamColorLights teamColorLights = new TeamColorLights(lightStrip);
-  private final SensorLights sensorLights = new SensorLights(lightStrip, wheel);
+  private final TeamColorLights teamColorLights = new TeamColorLights(i2cMultiplexer, 
+                                                                      Constants.multiplexerI2CREVColorDeviceId, 
+                                                                      lightStrip);
+  private final SensorLights sensorLights = new SensorLights(i2cMultiplexer,
+                                                             Constants.multiplexerI2CBNO055DeviceId,
+                                                             lightStrip, wheel);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.

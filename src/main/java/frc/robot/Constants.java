@@ -24,6 +24,10 @@ public final class Constants {
     public static int LEDPort = 0;
     public static int LEDLength = 10;
 
+    public static int multiplexerI2CREVColorDeviceId = 0;
+    public static int multiplexerI2CBNO055DeviceId = 1;
+
+    public static Port I2CMultiplexerPort = Port.kOnboard;
     public static Port colorSensorPort = Port.kOnboard;
     public static float proximityThreshhold = 200;
 
