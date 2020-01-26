@@ -59,19 +59,4 @@ public final class Constants {
     public static int rBumper = 6;
     public static int outputButton = 4;
 
-    public static double trackWidthMeters = 0.0762; // horizontal distance between the wheels 
-    // (2019 robot = 0.0762 meters (3 inches))
-    public static double maxPIDTrajectoryDriveVolts;
-    public static double maxPIDTrajectoryDriveAcceleration; // m/sec^2
-    public static double ksVolts;
-    public static double kvVoltSecondsPerMeter;
-    public static double kaVoltSecondsSquaredPerMeter;
-    public static double kPDriveVel;
-
-    // Universal PIDTrajectory constants
-    public static double ramseteB = 2;
-    public static double ramseteZeta = 0.7;
-
-    
-
 }
