@@ -14,12 +14,12 @@ import frc.robot.subsystems.Ball;
 
 public class DefaultBall extends CommandBase {
 
-private int lBumper;
-private int rBumper;
-private int outputButton;
+    private int lBumper;
+    private int rBumper;
+    private int outputButton;
 
-private Ball ball;
-private Joystick controller;
+    private Ball ball;
+    private Joystick controller;
 
     public DefaultBall(Ball ball, Joystick controller,int lBumper,int rBumper,int outputButton){
         this.ball = ball;
