@@ -7,11 +7,11 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
+
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.Ball.DefaultBall;
 import frc.robot.commands.Panel.GoToColor;
 import frc.robot.commands.Panel.ManualPanel;
 import frc.robot.commands.Panel.RotateThenSelect;
@@ -20,6 +20,7 @@ import frc.robot.commands.Panel.SensorLights;
 import frc.robot.commands.Panel.TogglePanelPosition;
 import frc.robot.core751.commands.lightstrip.TeamColorLights;
 import frc.robot.core751.subsystems.LightStrip;
+import frc.robot.subsystems.Ball;
 import frc.robot.subsystems.Panel;
 
 /**
@@ -39,6 +40,8 @@ public class RobotContainer {
   private final LightStrip lightStrip = new LightStrip(Constants.LEDPort, Constants.LEDLength);
 
   private final Panel panel = new Panel(Constants.firstColorSensorPort, Constants.secondColorSensorPort, Constants.panelSpinMotorID, Constants.panelPositionMotorID, Constants.panelTopLimitPin, Constants.panelBottomLimitPin);
+  private final Ball ball = new Ball(Constants.ballPorts);
+
 
   private final TeamColorLights teamColorLights = new TeamColorLights(lightStrip);
   private final SensorLights sensorLights = new SensorLights(lightStrip, panel);
@@ -48,6 +51,8 @@ public class RobotContainer {
   private final ManualPanel manualPanel = new ManualPanel(panel, driverJoystick, Constants.rightTrigger, Constants.leftTrigger);
   private final RotateThenSelect rotateThenSelect = new RotateThenSelect(panel, lightStrip);
   private final TogglePanelPosition togglePanelPosition = new TogglePanelPosition(panel);
+
+  private final DefaultBall defaultBall = new DefaultBall(ball, driverJoystick,Constants.lBumper,Constants.rBumper,Constants.outputButton);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -65,10 +70,14 @@ public class RobotContainer {
   private void configureButtonBindings() {
     lightStrip.setDefaultCommand(teamColorLights);
     panel.setDefaultCommand(manualPanel);
+    ball.setDefaultCommand(defaultBall);
+
+    SmartDashboard.putData(defaultBall);
     SmartDashboard.putData(togglePanelPosition);
     SmartDashboard.putData(goToColor);
     SmartDashboard.putData(rotateWheel);
     SmartDashboard.putData(rotateThenSelect);
+    
   }
 
 

@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.I2C.Port;
 
 /**
@@ -21,7 +22,22 @@ import edu.wpi.first.wpilibj.I2C.Port;
  */
 public final class Constants {
 
+
+    public static final double DefaultSpeedCap = 0.9;
     public static int driverstickPort = 0;
+
+    /*
+    Joystick Buttons
+        A(1)
+		B(2)
+		X(3)
+		Y(4)
+		LB(5) 
+		RB(6)
+    */
+
+    
+    //Panel
     public static int leftTrigger = 2;
     public static int rightTrigger = 3;
 
@@ -35,4 +51,12 @@ public final class Constants {
     public static int panelPositionMotorID = 2;
     public static int panelTopLimitPin = 0;
     public static int panelBottomLimitPin = 1;
+
+
+    //Ball
+    public static int[] ballPorts = {1,2,0};
+    public static int lBumper = 5;
+    public static int rBumper = 6;
+    public static int outputButton = 4;
+
 }
