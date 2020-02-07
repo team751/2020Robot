@@ -8,6 +8,7 @@
 package frc.robot;
 
 
+import edu.wpi.first.hal.sim.DriverStationSim;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -41,7 +42,6 @@ public class RobotContainer {
 
   private final Panel panel = new Panel(Constants.firstColorSensorPort, Constants.secondColorSensorPort, Constants.panelSpinMotorID, Constants.panelPositionMotorID, Constants.panelTopLimitPin, Constants.panelBottomLimitPin);
   private final Ball ball = new Ball(Constants.ballPorts);
-
 
   private final TeamColorLights teamColorLights = new TeamColorLights(lightStrip);
   private final SensorLights sensorLights = new SensorLights(lightStrip, panel);
