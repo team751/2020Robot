@@ -33,9 +33,10 @@ public class DefaultBall extends CommandBase {
 
     @Override
     public void execute() {
-
-        double inSpeed = SmartDashboard.getNumber("Intake speed", 0.5); 
+        
         double outSpeed = SmartDashboard.getNumber("Output speed", 0.5);
+        double inSpeed = SmartDashboard.getNumber("Intake speed", 0.5); 
+       
         
         if(controller.getRawButton(lBumper) || controller.getRawButton(rBumper)){
             ball.Intake(inSpeed);

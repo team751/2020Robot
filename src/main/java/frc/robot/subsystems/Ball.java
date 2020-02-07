@@ -21,8 +21,8 @@ public class Ball extends SubsystemBase {
         outputMotor = new WVictorSPX(ports[2]);
     }
     public void Intake(double speed){
-        setPolycordMotor(speed);
         setIntakeMotor(-speed);
+        setPolycordMotor(speed);
     }
 
     public void setOutputMotor(double speed){
