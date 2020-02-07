@@ -1,6 +1,8 @@
 language: java
 dist: xenial
 sudo: required
+git:
+  submodules: false
 before_install:
 - sudo apt update
 - sudo apt install software-properties-common python-software-properties -y
