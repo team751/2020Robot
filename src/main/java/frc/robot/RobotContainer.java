@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -39,17 +40,19 @@ public class RobotContainer {
 
   private final DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain(Constants.leftDrivetrainIDs, Constants.rightDrivetrainIDs, Constants.driveTrainMotorType);
   private final ArcadeDrive arcadeDrive = new ArcadeDrive(Constants.driverStick, differentialDriveTrain);
+  private final PowerDistributionPanel pdp = new PowerDistributionPanel();
 
-  private final LightStrip lightStrip = new LightStrip(Constants.LEDPort, Constants.LEDLength);
-  private final TeamColorLights teamColorLights = new TeamColorLights(lightStrip);
 
+  //private final LightStrip lightStrip = new LightStrip(Constants.LEDPort, Constants.LEDLength);
+  //private final TeamColorLights teamColorLights = new TeamColorLights(lightStrip);
+  /*
   private final Panel panel = new Panel(Constants.leftColorsensorPort, Constants.rightColorsensorPort, Constants.panelSpinID, Constants.panelRotateID, Constants.panelTopLimitPort, Constants.panelBottomLimitPort);
   private final GoToColor goToColor = new GoToColor(lightStrip, panel);
   private final RotateWheel rotateWheel = new RotateWheel(lightStrip, panel);
   private final ManualPanel manualPanel = new ManualPanel(panel, Constants.driverStick, Constants.rightTrigger, Constants.leftTrigger);
   private final RotateThenSelect rotateThenSelect = new RotateThenSelect(panel, lightStrip);
   private final TogglePanelPosition togglePanelPosition = new TogglePanelPosition(panel);
- 
+ */
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -64,16 +67,19 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
+
   private void configureButtonBindings() {
-    lightStrip.setDefaultCommand(teamColorLights);
+    differentialDriveTrain.setDefaultCommand(arcadeDrive);
+    SmartDashboard.putData(pdp);
+    // lightStrip.setDefaultCommand(teamColorLights);
 
 
-    panel.setDefaultCommand(manualPanel);
-    Constants.panelToggleButton.whenPressed(togglePanelPosition);
-    SmartDashboard.putData(togglePanelPosition);
-    SmartDashboard.putData(goToColor);
-    SmartDashboard.putData(rotateWheel);
-    SmartDashboard.putData(rotateThenSelect);
+    // panel.setDefaultCommand(manualPanel);
+    // Constants.panelToggleButton.whenPressed(togglePanelPosition);
+    // SmartDashboard.putData(togglePanelPosition);
+    // SmartDashboard.putData(goToColor);
+    // SmartDashboard.putData(rotateWheel);
+    // SmartDashboard.putData(rotateThenSelect);
   }
 
 

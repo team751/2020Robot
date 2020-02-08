@@ -44,8 +44,8 @@ public final class Constants {
         }
 
     }
-    
-    public static Joystick driverStick = new Joystick(Constants.driveStickPort);
+    public static int driveStickPort = 0;
+    public static Joystick driverStick = new Joystick(driveStickPort);
 
       /*================================/ 
      /===========Drive Train===========/
@@ -54,7 +54,9 @@ public final class Constants {
     public static int rightDrivetrainIDs[] = new int[] { 4, 5, 6 };
     public static DifferentialDriveTrain.driveMotor driveTrainMotorType = driveMotor.kSparkMaxBrushless;
 
-    public static int driveStickPort = 0;
+    
+    public static double leftOffset = 1;
+    public static double rightOffset = 0.99;
 
       /*================================/ 
      /===========Ball==================/
