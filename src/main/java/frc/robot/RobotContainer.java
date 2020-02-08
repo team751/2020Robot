@@ -41,7 +41,6 @@ public class RobotContainer {
   private final LightStrip lightStrip = new LightStrip(Constants.LEDPort, Constants.LEDLength);
 
   private final Panel panel = new Panel(Constants.firstColorSensorPort, Constants.secondColorSensorPort, Constants.panelSpinMotorID, Constants.panelPositionMotorID, Constants.panelTopLimitPin, Constants.panelBottomLimitPin);
-  private final Ball ball = new Ball(Constants.ballPorts);
 
   private final TeamColorLights teamColorLights = new TeamColorLights(lightStrip);
   private final SensorLights sensorLights = new SensorLights(lightStrip, panel);
@@ -52,7 +51,6 @@ public class RobotContainer {
   private final RotateThenSelect rotateThenSelect = new RotateThenSelect(panel, lightStrip);
   private final TogglePanelPosition togglePanelPosition = new TogglePanelPosition(panel);
 
-  private final DefaultBall defaultBall = new DefaultBall(ball, driverJoystick,Constants.lBumper,Constants.rBumper,Constants.outputButton);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -70,9 +68,6 @@ public class RobotContainer {
   private void configureButtonBindings() {
     lightStrip.setDefaultCommand(teamColorLights);
     panel.setDefaultCommand(manualPanel);
-    ball.setDefaultCommand(defaultBall);
-
-    SmartDashboard.putData(defaultBall);
     SmartDashboard.putData(togglePanelPosition);
     SmartDashboard.putData(goToColor);
     SmartDashboard.putData(rotateWheel);

@@ -9,16 +9,11 @@ public class Ball extends SubsystemBase {
     private WVictorSPX polycordMotor;
     private WVictorSPX outputMotor;
 
-    /**
-     * @param ports
-     * ports[0] intake,
-     * ports[1] polycord,
-     * ports[2] outtake
-     */
-    public Ball(int[] ports){
-        intakeMotor = new WVictorSPX(ports[0]);
-        polycordMotor = new WVictorSPX(ports[1]);
-        outputMotor = new WVictorSPX(ports[2]);
+    
+    public Ball(int intakeMotorPort, int polycordMotorPort, int outputMotorPort){
+        intakeMotor = new WVictorSPX(intakeMotorPort);
+        polycordMotor = new WVictorSPX(polycordMotorPort);
+        outputMotor = new WVictorSPX(outputMotorPort);
     }
     public void Intake(double speed){
         setIntakeMotor(-speed);
