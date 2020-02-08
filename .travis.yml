@@ -11,7 +11,7 @@ before_install:
 - sudo apt install default-jdk frc-toolchain -y
 - chmod 777 gradlew
 - ls
-- git submodule update --force --recursive --init --remote
+- git submodule update --force --recursive --init
 script: ./gradlew assemble
 notifications:
   slack:
