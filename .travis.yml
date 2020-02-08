@@ -1,6 +1,8 @@
 language: java
 dist: xenial
 sudo: required
+git:
+  submodules: false
 before_install:
 - sudo apt update
 - sudo apt install software-properties-common python-software-properties -y
@@ -9,6 +11,7 @@ before_install:
 - sudo apt install default-jdk frc-toolchain -y
 - chmod 777 gradlew
 - ls
+- git submodule update --force --recursive --init
 script: ./gradlew assemble
 notifications:
   slack:
