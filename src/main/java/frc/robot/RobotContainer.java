@@ -47,7 +47,7 @@ public class RobotContainer {
   private final TogglePanelPosition togglePanelPosition = new TogglePanelPosition(panel);
 
   private final Ball ball = new Ball(Constants.ballIntakeMotorID, Constants.ballPolycordMotorID, Constants.ballOutakeMotorID);
-  private final DefaultBall defaultBall = new DefaultBall(ball, Constants.driverStick, );
+  private final DefaultBall defaultBall = new DefaultBall(ball, Constants.driverStick, Constants.ballLBumper, Constants.ballRBumper, Constants.ballOutButton);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -66,7 +66,8 @@ public class RobotContainer {
     lightStrip.setDefaultCommand(teamColorLights);
     panel.setDefaultCommand(manualPanel);
     differentialDriveTrain.setDefaultCommand(arcadeDrive);
-  
+    ball.setDefaultCommand(defaultBall);
+    
     SmartDashboard.putData(togglePanelPosition);
     SmartDashboard.putData(goToColor);
     SmartDashboard.putData(rotateWheel);

@@ -65,7 +65,7 @@ public final class Constants {
     public static int ballIntakeMotorID = 7;
     public static int ballPolycordMotorID = 8;
     public static int ballOutakeMotorID = 9;
-    //Ball ball, Joystick controller,int lBumper,int rBumper,int outputButton
+    
     public static int ballLBumper = Controller.LB.buttonNum;
     public static int ballRBumper = Controller.RB.buttonNum;
     public static int ballOutButton = Controller.A.buttonNum;
