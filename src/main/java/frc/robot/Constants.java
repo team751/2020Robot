@@ -59,6 +59,9 @@ public final class Constants {
       /*================================/ 
      /===========Ball==================/
     /================================*/
+    public static int ballIntakeMotorID = 7;
+    public static int ballPolycordMotorID = 8;
+    public static int ballOutakeMotorID = 9;
 
       /*================================/ 
      /===========Panel=================/
