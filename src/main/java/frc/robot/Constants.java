@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj2.command.button.Button;
@@ -52,6 +54,7 @@ public final class Constants {
     /================================*/
     public static int leftDrivetrainIDs[] = new int[] { 1, 2, 3 };
     public static int rightDrivetrainIDs[] = new int[] { 4, 5, 6 };
+    public static DifferentialDriveTrain.SmartControllerProfile driveMotorProfile= new DifferentialDriveTrain.SmartControllerProfile(IdleMode.kBrake, 35);
     public static DifferentialDriveTrain.driveMotor driveTrainMotorType = driveMotor.kSparkMaxBrushless;
 
     public static int driveStickPort = 0;
@@ -62,6 +65,10 @@ public final class Constants {
     public static int ballIntakeMotorID = 7;
     public static int ballPolycordMotorID = 8;
     public static int ballOutakeMotorID = 9;
+    //Ball ball, Joystick controller,int lBumper,int rBumper,int outputButton
+    public static int ballLBumper = Controller.LB.buttonNum;
+    public static int ballRBumper = Controller.RB.buttonNum;
+    public static int ballOutButton = Controller.A.buttonNum;
 
       /*================================/ 
      /===========Panel=================/
