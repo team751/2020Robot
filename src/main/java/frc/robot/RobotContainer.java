@@ -33,12 +33,12 @@ public class RobotContainer {
 
   
 
-  private final DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain(Constants.leftDrivetrainIDs, Constants.rightDrivetrainIDs, Constants.driveTrainMotorType);
+  private final DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain(Constants.leftDrivetrainIDs, Constants.rightDrivetrainIDs, Constants.driveTrainMotorType, Constants.driveMotorProfile);
   private final ArcadeDrive arcadeDrive = new ArcadeDrive(Constants.driverStick, differentialDriveTrain);
+  
   private final LightStrip lightStrip = new LightStrip(Constants.LEDPort, Constants.LEDPort);
-  private final Ball ball = new Ball(Constants.ballIntakeMotorID, Constants.ballPolycordMotorID, Constants.ballOutakeMotorID);
   private final TeamColorLights teamColorLights = new TeamColorLights(lightStrip);
-
+  
   private final Panel panel = new Panel(Constants.leftColorsensorPort, Constants.rightColorsensorPort, Constants.panelSpinID, Constants.panelRotateID, Constants.panelTopLimitPort, Constants.panelBottomLimitPort);
   private final GoToColor goToColor = new GoToColor(lightStrip, panel);
   private final RotateWheel rotateWheel = new RotateWheel(lightStrip, panel);
@@ -46,6 +46,8 @@ public class RobotContainer {
   private final RotateThenSelect rotateThenSelect = new RotateThenSelect(panel, lightStrip);
   private final TogglePanelPosition togglePanelPosition = new TogglePanelPosition(panel);
 
+  private final Ball ball = new Ball(Constants.ballIntakeMotorID, Constants.ballPolycordMotorID, Constants.ballOutakeMotorID);
+  private final DefaultBall defaultBall = new DefaultBall(ball, Constants.driverStick, Constants.ballLBumper, Constants.ballRBumper, Constants.ballOutButton);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -64,7 +66,8 @@ public class RobotContainer {
     lightStrip.setDefaultCommand(teamColorLights);
     panel.setDefaultCommand(manualPanel);
     differentialDriveTrain.setDefaultCommand(arcadeDrive);
-
+    ball.setDefaultCommand(defaultBall);
+    
     SmartDashboard.putData(togglePanelPosition);
     SmartDashboard.putData(goToColor);
     SmartDashboard.putData(rotateWheel);
