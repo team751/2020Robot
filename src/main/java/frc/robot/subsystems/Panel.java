@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
@@ -15,69 +16,65 @@ import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.core751.wrappers.WCANSparkMax;
-import frc.robot.core751.wrappers.WVictorSPX;
 
 public class Panel extends SubsystemBase {
 
     public enum WheelColor {
-        BLUE(240, 255, 255, true),
-        GREEN(120, 255, 255, true),
-        RED(0, 255, 255, true),
-        YELLOW(60, 255, 255, true),
-        UNKNOWN(300, 255, 255, false),
-        BETWEEN(200, 255, 255, false);
-        
+        BLUE(240, 255, 255, true), GREEN(120, 255, 255, true), RED(0, 255, 255, true), YELLOW(60, 255, 255, true),
+        UNKNOWN(300, 255, 255, false), BETWEEN(200, 255, 255, false);
 
         public final int[] HSV;
         public boolean color;
-        
-        public static WheelColor getTargetColor(){
+
+        public static WheelColor getTargetColor() {
             String gameData;
             gameData = DriverStation.getInstance().getGameSpecificMessage();
-            if(gameData.length() > 0) {
+            if (gameData.length() > 0) {
                 switch (gameData.charAt(0)) {
-                    case 'B' :
+                case 'B':
                     return BLUE;
-                    case 'G' :
+                case 'G':
                     return GREEN;
-                    case 'R' :
+                case 'R':
                     return RED;
-                    case 'Y' :
+                case 'Y':
                     return YELLOW;
-                    default :
+                default:
                     return UNKNOWN;
                 }
             } else {
-            return UNKNOWN;
+                return UNKNOWN;
             }
         }
 
         private WheelColor(int h, int s, int v, boolean color) {
-            this.HSV = new int[]{h, s, v};
+            this.HSV = new int[] { h, s, v };
             this.color = color;
         }
 
         public int directionTo(WheelColor o) {
-            if (this == UNKNOWN || this == BETWEEN) return 0;
+            if (this == UNKNOWN || this == BETWEEN)
+                return 0;
             int res = this.ordinal() - o.ordinal();
-            if (res == 2 || res == -2) return 1;
+            if (res == 2 || res == -2)
+                return 1;
             return res;
         }
 
         public int colorDist(WheelColor o) {
-            if (this == BLUE && o == YELLOW) return 1;
-            if (this == YELLOW && o == BLUE) return -1;
-            return this.ordinal()-o.ordinal();
+            if (this == BLUE && o == YELLOW)
+                return 1;
+            if (this == YELLOW && o == BLUE)
+                return -1;
+            return this.ordinal() - o.ordinal();
         }
 
     }
 
     public enum PositionState {
-        UNKNOWN,
-        UP,
-        DOWN;
+        UNKNOWN, UP, DOWN;
     }
-    
+
     private ColorSensorV3 firstColorSensor;
     private ColorSensorV3 secondColorSensor;
     private ColorMatch colorMatcher;
@@ -88,14 +85,15 @@ public class Panel extends SubsystemBase {
     // private final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
     // private final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
     // private final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
-    // private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
+    // private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524,
+    // 0.113);
     private final Color kBlueTarget = ColorMatch.makeColor(0.20, 0.46, 0.34);
     private final Color kGreenTarget = ColorMatch.makeColor(0.20, 0.53, 0.256);
     private final Color kRedTarget = ColorMatch.makeColor(0.43, 0.37, 0.19);
     private final Color kYellowTarget = ColorMatch.makeColor(0.29, 0.54, 0.17);
 
-    private WVictorSPX spinMotor;
-    private WVictorSPX positionMotor;
+    private WPI_VictorSPX spinMotor;
+    private WPI_VictorSPX positionMotor;
 
     private DigitalInput topLimitSwitch;
     private DigitalInput bottomLimitSwitch;
@@ -113,8 +111,8 @@ public class Panel extends SubsystemBase {
         colorMatcher.addColorMatch(kRedTarget);
         colorMatcher.addColorMatch(kYellowTarget);  
         this.lastColor = WheelColor.UNKNOWN;
-        this.spinMotor = new WVictorSPX(speedMotorID);
-        this.positionMotor = new WVictorSPX(positionMotorID);
+        this.spinMotor = new WPI_VictorSPX(speedMotorID);
+        this.positionMotor = new WPI_VictorSPX(positionMotorID);
         this.topLimitSwitch = new DigitalInput(topSwitchPin);
         this.bottomLimitSwitch = new DigitalInput(bottomSwitchPin);
         this.positionState = this.touchingBottom()?PositionState.DOWN:this.touchingTop()?PositionState.UP:PositionState.UNKNOWN;
