@@ -58,7 +58,7 @@ public final class Constants {
     public static DifferentialDriveTrain.driveMotor driveTrainMotorType = driveMotor.kSparkMaxBrushless;
 
     public static int driveStickPort = 0;
-    public static Button driveSwitchDirrectionButton = new JoystickButton(driverStick, Controller.START.buttonNum);
+    public static Button driveSwitchDirectionButton = new JoystickButton(driverStick, Controller.START.buttonNum);
 
       /*================================/ 
      /===========Ball==================/
