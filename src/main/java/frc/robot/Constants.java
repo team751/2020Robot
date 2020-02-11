@@ -7,7 +7,12 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.I2C.Port;
+import edu.wpi.first.wpilibj2.command.button.Button;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.core751.subsystems.DifferentialDriveTrain;
+import frc.robot.core751.subsystems.DifferentialDriveTrain.driveMotor;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -21,25 +26,77 @@ import edu.wpi.first.wpilibj.I2C.Port;
  */
 public final class Constants {
 
+    public enum Controller { // Button mappings for the XBOX One controller
+        A(1), B(2), X(3), Y(4), LB(5), RB(6), LT(2), // Must use .getRawAxis()
+        RT(3), // Must use .getRaxAxis()
+        BACK(7), START(8), LEFT_AXIS_PRESS(9), // X-Axis: -1.000 to 1.000 (stick.GetX())
+                                               // Y-Axis: -1.000 to 1.000 (stick.GetY())
+        RIGHT_AXIS_PRESS(10);
+
+        private int buttonNum;
+
+        private Controller(int value) {
+            this.buttonNum = value;
+        }
+
+        public int getButtonMapping() {
+            return this.buttonNum;
+        }
+
+    }
+    
+    public static Joystick driverStick = new Joystick(Constants.driveStickPort);
+
+      /*================================/ 
+     /===========Drive Train===========/
+    /================================*/
+    public static int leftDrivetrainIDs[] = new int[] { 1, 2, 3 };
+    public static int rightDrivetrainIDs[] = new int[] { 4, 5, 6 };
+    public static DifferentialDriveTrain.driveMotor driveTrainMotorType = driveMotor.kSparkMaxBrushless;
+
+    public static int driveStickPort = 0;
+
+      /*================================/ 
+     /===========Ball==================/
+    /================================*/
+
+      /*================================/ 
+     /===========Panel=================/
+    /================================*/
+    public static int panelRotateID = 10;
+    public static int panelSpinID = 11;
+
+    public static int panelBottomLimitPort = 0;
+    public static int panelTopLimitPort = 1;
+
+    public static Port leftColorsensorPort = Port.kOnboard;
+    public static Port rightColorsensorPort = Port.kMXP;
+
+    public static float proximityThreshhold = 200;
+
+    public static int leftTrigger = 2;
+    public static int rightTrigger = 3;
+
+    public static Button panelToggleButton = new JoystickButton(driverStick, Controller.Y.buttonNum);
+
+     /*======================================/
+     /===========Lightstrip=================/
+    /=====================================*/
     public static int LEDPort = 0;
     public static int LEDLength = 10;
 
-    public static int multiplexerI2CREVColorDeviceId = 0;
-    public static int multiplexerI2CBNO055DeviceId = 1;
-
-    public static Port I2CMultiplexerPort = Port.kOnboard;
-    public static Port colorSensorPort = Port.kOnboard;
-    public static float proximityThreshhold = 200;
 
     // Robot-specific PIDTrajectory constants 
-    public static double trackWidthMeters = 0.0762; // horizontal distance between the wheels 
-                                                    // (2019 robot = 0.0762 meters (3 inches))
-    public static double maxPIDTrajectoryDriveVolts;
-    public static double maxPIDTrajectoryDriveAcceleration; // m/sec^2
-    public static double ksVolts;
-    public static double kvVoltSecondsPerMeter;
-    public static double kaVoltSecondsSquaredPerMeter;
-    public static double kPDriveVel;
+    public static double trackWidthMeters = 0.19431; // horizontal distance between the wheels 
+                                                    // (2019 robot = 0.19431 meters (.6375 inches))
+    public static double maxPIDTrajectoryDriveNeomVelocity = 3.9624;
+    public static double maxPIDTrajectoryDriveAcceleration = 2.4384; // m/sec^2
+    public static double ksVolts = 0.826;
+    public static double kvVoltSecondsPerMeter = 0.0387;
+    public static double kaVoltSecondsSquaredPerMeter = 0.00535;
+    public static double kPDriveVel = 0.249;
+
+    public static String pathWeaverJSONPath = "paths/NeomNeomAuton.team751.json";
 
     // Universal PIDTrajectory constants
     public static double ramseteB = 2;

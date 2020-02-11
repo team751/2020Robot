@@ -49,9 +49,7 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
 
-    SmartDashboard.putBoolean("BNO055 Present", m_robotContainer.bno055.isSensorPresent());
-    SmartDashboard.putBoolean("BNO055 Calibrated", m_robotContainer.bno055.isCalibrated());
-    SmartDashboard.putNumber("BNO055 degrees", m_robotContainer.bno055.getHeading());
+    SmartDashboard.putNumber("Gyro Degrees", m_robotContainer.arduinoGyro.getAngle()); 
   }
 
   /**
