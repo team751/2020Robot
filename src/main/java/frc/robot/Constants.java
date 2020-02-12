@@ -91,10 +91,10 @@ public final class Constants {
                                                     // (2019 robot = 0.19431 meters (.6375 inches))
     public static double maxPIDTrajectoryDriveNeomVelocity = 3.9624;
     public static double maxPIDTrajectoryDriveAcceleration = 2.4384; // m/sec^2
-    public static double ksVolts = 0.826;
-    public static double kvVoltSecondsPerMeter = 0.0387;
-    public static double kaVoltSecondsSquaredPerMeter = 0.00535;
-    public static double kPDriveVel = 0.249;
+    public static double ksVolts = 0.826; //update 
+    public static double kvVoltSecondsPerMeter = 0.0387; //update
+    public static double kaVoltSecondsSquaredPerMeter = 0.00535; //update
+    public static double kPDriveVel = 0.249; //update
 
     public static String pathWeaverJSONPath = "paths/NeomNeomAuton.team751.json";
 
