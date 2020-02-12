@@ -87,7 +87,7 @@ public final class Constants {
 
 
     // Robot-specific PIDTrajectory constants 
-    public static double trackWidthMeters = 0.19431; // horizontal distance between the wheels 
+    public static double trackWidthMeters = 0.586486; // horizontal distance between the wheels 
                                                     // (2019 robot = 0.19431 meters (.6375 inches))
     public static double maxPIDTrajectoryDriveNeomVelocity = 3.9624;
     public static double maxPIDTrajectoryDriveAcceleration = 2.4384; // m/sec^2

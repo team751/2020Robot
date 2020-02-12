@@ -49,7 +49,8 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
 
-    SmartDashboard.putNumber("Gyro Degrees", m_robotContainer.arduinoGyro.getAngle()); 
+    m_robotContainer.differentialDriveTrain.updateOdometry();
+    //SmartDashboard.putNumber("Gyro Degrees", m_robotContainer.arduinoGyro.getAngle()); 
   }
 
   /**

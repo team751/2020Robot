@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 /*import frc.robot.commands.Panel.GoToColor;
@@ -26,6 +29,8 @@ import frc.robot.core751.subsystems.LightStrip;
 import frc.robot.core751.wrappers.ArduinoGyro;
 //import frc.robot.subsystems.Panel;
 
+import java.util.List;
+
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -38,13 +43,12 @@ public class RobotContainer {
 
   // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  
+  public final DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain(Constants.leftDrivetrainIDs, Constants.rightDrivetrainIDs, Constants.driveTrainMotorType);
 
-  private final DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain(Constants.leftDrivetrainIDs, Constants.rightDrivetrainIDs, Constants.driveTrainMotorType);
   private final ArcadeDrive arcadeDrive = new ArcadeDrive(Constants.driverStick, differentialDriveTrain);
   private final PowerDistributionPanel pdp = new PowerDistributionPanel();
 
-  public final ArduinoGyro arduinoGyro = new ArduinoGyro();
+  //public final ArduinoGyro arduinoGyro = new ArduinoGyro();
 
   //private final LightStrip lightStrip = new LightStrip(Constants.LEDPort, Constants.LEDLength);
   //private final TeamColorLights teamColorLights = new TeamColorLights(lightStrip);
@@ -94,6 +98,12 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return new PIDTrajectoryDrive(differentialDriveTrain, 
-                                  Constants.pathWeaverJSONPath);
+                                  new Pose2d(0, 0, new Rotation2d(0)),
+                                  List.of(
+                                      new Translation2d(1, 1),
+                                      new Translation2d(2, -1)
+                                  ),
+                                  new Pose2d(3, 0, new Rotation2d(0))
+                                  /*Constants.pathWeaverJSONPath*/);
   }
 }
