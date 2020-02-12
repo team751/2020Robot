@@ -56,8 +56,11 @@ public final class Constants {
     public static int rightDrivetrainIDs[] = new int[] { 4, 5, 6 };
     public static DifferentialDriveTrain.SmartControllerProfile driveMotorProfile= new DifferentialDriveTrain.SmartControllerProfile(IdleMode.kBrake, 35);
     public static DifferentialDriveTrain.driveMotor driveTrainMotorType = driveMotor.kSparkMaxBrushless;
+    public static boolean driveInvertLeft = true;
+    public static boolean driveInvertRight = false;
 
     public static int driveStickPort = 0;
+    public static Button driveSwitchDirectionButton = new JoystickButton(driverStick, Controller.START.buttonNum);
 
       /*================================/ 
      /===========Ball==================/
