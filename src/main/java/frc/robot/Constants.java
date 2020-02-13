@@ -60,6 +60,7 @@ public final class Constants {
     public static boolean driveInvertRight = false;
 
     public static int driveStickPort = 0;
+    public static Button driveSwitchDirectionButton = new JoystickButton(driverStick, Controller.START.buttonNum);
 
       /*================================/ 
      /===========Ball==================/
