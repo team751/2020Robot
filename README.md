@@ -1,6 +1,5 @@
-# ![Robot](robot.png)
-# 2020Robot
-# ![Travis](https://api.travis-ci.com/team751/2020Robot.svg?branch=master)
+![Robot](robot.png)
+# 2020Robot ![Travis](https://api.travis-ci.com/team751/2020Robot.svg?branch=master)
 This is the main robot code repo for [FRC Team 751's](https://www.team751.com/) 2020 "Infinite Recharge" Robot.
 
 There are two main code parts in this repo
