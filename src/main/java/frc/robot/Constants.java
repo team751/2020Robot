@@ -96,7 +96,7 @@ public final class Constants {
     public static double kaVoltSecondsSquaredPerMeter = 0.00535; //update
     public static double kPDriveVel = 0.249; //update
 
-    public static String pathWeaverJSONPath = "paths/NeomNeomAuton.team751.json";
+    public static String pathWeaverJSONPath = "paths/Test.wpilib.json";
 
     // Universal PIDTrajectory constants
     public static double ramseteB = 2;
