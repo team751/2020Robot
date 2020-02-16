@@ -69,34 +69,42 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
+    // Motor inversions:
+    // 1,2,3 = true
+    // 4,5,6 = false
+
     if (!isReal()) SmartDashboard.putData(new SimEnabler());
 
     stick = new Joystick(0);
 
     leftMaster = new CANSparkMax(1, MotorType.kBrushless);
-    leftMaster.setInverted(false);
+    leftMaster.setInverted(true);
     leftMaster.setIdleMode(IdleMode.kBrake);
 
     leftEncoder = leftMaster.getEncoder();
 
     rightMaster = new CANSparkMax(4, MotorType.kBrushless);
-    rightMaster.setInverted(true);
+    rightMaster.setInverted(false);
     rightMaster.setIdleMode(IdleMode.kBrake);
 
     rightEncoder = rightMaster.getEncoder();
 
     CANSparkMax leftSlave0 = new CANSparkMax(2, MotorType.kBrushless);
     leftSlave0.follow(leftMaster);
+    leftMaster.setInverted(true);
     leftSlave0.setIdleMode(IdleMode.kBrake);
     CANSparkMax leftSlave1 = new CANSparkMax(3, MotorType.kBrushless);
     leftSlave1.follow(leftMaster);
+    leftMaster.setInverted(true);
     leftSlave1.setIdleMode(IdleMode.kBrake);
 
     CANSparkMax rightSlave0 = new CANSparkMax(5, MotorType.kBrushless);
     rightSlave0.follow(rightMaster, true);
+    leftMaster.setInverted(false);
     rightSlave0.setIdleMode(IdleMode.kBrake);
     CANSparkMax rightSlave1 = new CANSparkMax(6, MotorType.kBrushless);
     rightSlave1.follow(rightMaster, true);
+    leftMaster.setInverted(false);
     rightSlave1.setIdleMode(IdleMode.kBrake);
 
     //
