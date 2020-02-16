@@ -39,7 +39,8 @@ public class RobotContainer {
   private final DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain(Constants.leftDrivetrainIDs, Constants.rightDrivetrainIDs, Constants.driveTrainMotorType, Constants.driveMotorProfile, Constants.driveInvertLeft, Constants.driveInvertRight);
   private final ReversableArcadeDrive reversableArcadeDrive = new ReversableArcadeDrive(Constants.driverStick, differentialDriveTrain);
   private final SwitchDriveDirection switchDriveDirection = new SwitchDriveDirection(differentialDriveTrain);
-  
+  private final ArcadeDrive arcadeDrive = new ArcadeDrive(Constants.driverStick, differentialDriveTrain);
+
   private final LightStrip lightStrip = new LightStrip(Constants.LEDPort, Constants.LEDPort);
   private final TeamColorLights teamColorLights = new TeamColorLights(lightStrip);
   
