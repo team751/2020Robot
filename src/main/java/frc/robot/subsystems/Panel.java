@@ -103,7 +103,9 @@ public class Panel extends SubsystemBase {
     public PositionState lastPositionState;
 
     public Panel(Port firstPort, Port secondPort, int speedMotorID, int positionMotorID, int topSwitchPin, int bottomSwitchPin) {
+        System.out.println("First port below");
         this.firstColorSensor = new ColorSensorV3(firstPort);
+        System.out.println("second port below");
         this.secondColorSensor = new ColorSensorV3(secondPort);
         this.rotations = 0;
         this.colorMatcher = new ColorMatch();
@@ -122,6 +124,9 @@ public class Panel extends SubsystemBase {
         SmartDashboard.putBoolean("Top Limit", false);
         SmartDashboard.putBoolean("Bottom Limit", false);
         this.passiveUpSpeed = SmartDashboard.getNumber("Passive Panel Speed", 0.1);
+
+        //System.out.println(this.firstColorSensor);
+        //System.out.println(this.secondColorSensor);
     }
 
     public WheelColor getColor() {

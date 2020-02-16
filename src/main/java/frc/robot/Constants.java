@@ -69,9 +69,12 @@ public final class Constants {
     public static int ballPolycordMotorID = 8;
     public static int ballOutakeMotorID = 9;
     
+    public static double polycordGracePeriod = 7; // in seconds
+
     public static int ballLBumper = Controller.LB.buttonNum;
     public static int ballRBumper = Controller.RB.buttonNum;
     public static int ballOutButton = Controller.A.buttonNum;
+    public static int ballReverseOutButton = Controller.BACK.buttonNum;
 
       /*================================/ 
      /===========Panel=================/
