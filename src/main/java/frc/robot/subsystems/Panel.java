@@ -81,6 +81,7 @@ public class Panel extends SubsystemBase {
 
     private WheelColor lastColor;
     private float rotations;
+    private double passiveUpSpeed;
 
     // private final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
     // private final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
@@ -117,6 +118,10 @@ public class Panel extends SubsystemBase {
         this.bottomLimitSwitch = new DigitalInput(bottomSwitchPin);
         this.positionState = this.touchingBottom()?PositionState.DOWN:this.touchingTop()?PositionState.UP:PositionState.UNKNOWN;
         this.lastPositionState = this.positionState==PositionState.UNKNOWN?PositionState.DOWN:PositionState.UNKNOWN;
+        SmartDashboard.putNumber("Passive Panel Speed", 0.25);
+        SmartDashboard.putBoolean("Top Limit", false);
+        SmartDashboard.putBoolean("Bottom Limit", false);
+        this.passiveUpSpeed = SmartDashboard.getNumber("Passive Panel Speed", 0.1);
     }
 
     public WheelColor getColor() {
@@ -200,17 +205,25 @@ public class Panel extends SubsystemBase {
         this.spinMotor.set(speed);
     }
 
+    public double getPassiveUpSpeed() {
+        this.passiveUpSpeed = SmartDashboard.getNumber("Passive Panel Speed", 0.1);
+        return this.passiveUpSpeed;
+    }
+
     public void stopSpinMotor() {
         this.spinMotor.stopMotor();
         this.spinMotor.set(0);
     }
 
+
     public boolean touchingBottom() {
-        return this.bottomLimitSwitch.get();
+        //return this.bottomLimitSwitch.get();
+        return SmartDashboard.getBoolean("Bottom Limit", false);
     }
 
     public boolean touchingTop() {
-        return this.topLimitSwitch.get();
+        // this.topLimitSwitch.get();
+        return SmartDashboard.getBoolean("Top Limit", false);
     }
 
     public void setPositionMotor(double speed) {
