@@ -15,8 +15,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.Ball.*;
 import frc.robot.commands.Panel.*;
 import frc.robot.core751.commands.Drivetrain.ArcadeDrive;
-import frc.robot.core751.commands.Drivetrain.ReversableArcadeDrive;
-import frc.robot.core751.commands.Drivetrain.SwitchDriveDirection;
+//import frc.robot.core751.commands.Drivetrain.ReversableArcadeDrive;
+//import frc.robot.core751.commands.Drivetrain.SwitchDriveDirection;
 import frc.robot.core751.commands.lightstrip.TeamColorLights;
 import frc.robot.core751.subsystems.DifferentialDriveTrain;
 import frc.robot.core751.subsystems.LightStrip;
@@ -36,9 +36,9 @@ public class RobotContainer {
 
   
 
-  private final DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain(Constants.leftDrivetrainIDs, Constants.rightDrivetrainIDs, Constants.driveTrainMotorType, Constants.driveMotorProfile, Constants.driveInvertLeft, Constants.driveInvertRight);
-  private final ReversableArcadeDrive reversableArcadeDrive = new ReversableArcadeDrive(Constants.driverStick, differentialDriveTrain);
-  private final SwitchDriveDirection switchDriveDirection = new SwitchDriveDirection(differentialDriveTrain);
+  //private final DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain(Constants.leftDrivetrainIDs, Constants.rightDrivetrainIDs, Constants.driveTrainMotorType, Constants.driveMotorProfile, Constants.driveInvertLeft, Constants.driveInvertRight);
+  //private final ReversableArcadeDrive reversableArcadeDrive = new ReversableArcadeDrive(Constants.driverStick, differentialDriveTrain);
+  //private final SwitchDriveDirection switchDriveDirection = new SwitchDriveDirection(differentialDriveTrain);
   
   private final LightStrip lightStrip = new LightStrip(Constants.LEDPort, Constants.LEDPort);
   private final TeamColorLights teamColorLights = new TeamColorLights(lightStrip);
@@ -72,10 +72,10 @@ public class RobotContainer {
   private void configureButtonBindings() {
     lightStrip.setDefaultCommand(teamColorLights);
     panel.setDefaultCommand(manualPanel);
-    differentialDriveTrain.setDefaultCommand(reversableArcadeDrive);
+    //differentialDriveTrain.setDefaultCommand(reversableArcadeDrive);
     ball.setDefaultCommand(defaultBall);
 
-    Constants.driveSwitchDirectionButton.whenPressed(switchDriveDirection);
+    //Constants.driveSwitchDirectionButton.whenPressed(switchDriveDirection);
 
     SmartDashboard.putData(pdp);
     

@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.core751.subsystems.DifferentialDriveTrain;
-import frc.robot.core751.subsystems.DifferentialDriveTrain.driveMotor;
+//import frc.robot.core751.subsystems.DifferentialDriveTrain.driveMotor;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -54,8 +54,8 @@ public final class Constants {
     /================================*/
     public static int leftDrivetrainIDs[] = new int[] { 1, 2, 3 };
     public static int rightDrivetrainIDs[] = new int[] { 4, 5, 6 };
-    public static DifferentialDriveTrain.SmartControllerProfile driveMotorProfile= new DifferentialDriveTrain.SmartControllerProfile(IdleMode.kBrake, 35);
-    public static DifferentialDriveTrain.driveMotor driveTrainMotorType = driveMotor.kSparkMaxBrushless;
+    //public static DifferentialDriveTrain.SmartControllerProfile driveMotorProfile= new DifferentialDriveTrain.SmartControllerProfile(IdleMode.kBrake, 35);
+    //public static DifferentialDriveTrain.driveMotor driveTrainMotorType = driveMotor.kSparkMaxBrushless;
     public static boolean driveInvertLeft = true;
     public static boolean driveInvertRight = false;
 
@@ -93,10 +93,11 @@ public final class Constants {
     public static Button panelToggleButton = new JoystickButton(driverStick, Controller.Y.buttonNum);
 
      /*======================================/
-     /===========Lightstrip=================/
+     /===========LightGrid==================/
     /=====================================*/
     public static int LEDPort = 0;
-    public static int LEDLength = 10;
+    public static int LEDRows = 5;
+    public static int LEDCols = 15;
 
 
     // Robot-specific PIDTrajectory constants 
