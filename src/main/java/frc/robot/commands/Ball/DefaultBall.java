@@ -39,7 +39,7 @@ public class DefaultBall extends CommandBase {
 
     @Override
     public void execute() {
-        double outSpeed = SmartDashboard.getNumber("Output speed", 0.5);
+        double outSpeed = SmartDashboard.getNumber("Output speed", 0.75);
         double inSpeed = SmartDashboard.getNumber("Intake speed", 0.5); 
        
         
