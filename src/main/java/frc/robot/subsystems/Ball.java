@@ -15,9 +15,10 @@ public class Ball extends SubsystemBase {
         polycordMotor = new WVictorSPX(polycordMotorPort);
         outputMotor = new WVictorSPX(outputMotorPort);
     }
+
     public void Intake(double speed){
-        setIntakeMotor(-speed);
-        setPolycordMotor(speed);
+        setIntakeMotor(speed);
+        setPolycordMotor(-speed);
     }
 
     public void setOutputMotor(double speed){

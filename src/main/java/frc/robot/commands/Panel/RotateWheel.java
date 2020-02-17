@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.core751.subsystems.LightStrip;
 import frc.robot.subsystems.Panel;
+import frc.robot.subsystems.Panel.PositionState;
 import frc.robot.subsystems.Panel.WheelColor;
 
 public class RotateWheel extends CommandBase {
@@ -28,6 +29,12 @@ public class RotateWheel extends CommandBase {
 
     @Override
     public void initialize() {
+        if (this.panel.positionState !=PositionState.UP) {
+            this.finished = true;
+            return;
+        }else {
+            this.panel.setPositionMotor(this.panel.getPassiveUpSpeed());
+        }
         this.finished = false;
         int[] c = panel.getColor().HSV;
         for (int i = 0; i < lightStrip.length; i++) {
