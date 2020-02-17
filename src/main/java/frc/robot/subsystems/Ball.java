@@ -18,7 +18,7 @@ public class Ball extends SubsystemBase {
 
     public void Intake(double speed){
         setIntakeMotor(speed);
-        setPolycordMotor(speed);
+        setPolycordMotor(-speed);
     }
 
     public void setOutputMotor(double speed){

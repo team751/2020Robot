@@ -43,9 +43,11 @@ public class DefaultBall extends CommandBase {
         double inSpeed = SmartDashboard.getNumber("Intake speed", 0.5); 
        
         
-        if(controller.getRawButton(lBumper) || controller.getRawButton(rBumper)){
+        if(controller.getRawButton(rBumper)){
             polycordStartTime = edu.wpi.first.wpilibj.Timer.getFPGATimestamp(); //seconds
             ball.Intake(inSpeed);
+        } else if(controller.getRawButton(lBumper)) {
+            ball.Intake(-inSpeed);
         } else {
             if(edu.wpi.first.wpilibj.Timer.getFPGATimestamp() - polycordStartTime >= Constants.polycordGracePeriod) {
                 ball.setPolycordMotor(0);

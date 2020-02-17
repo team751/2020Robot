@@ -54,7 +54,7 @@ public final class Constants {
     /================================*/
     public static int leftDrivetrainIDs[] = new int[] { 1, 2, 3 };
     public static int rightDrivetrainIDs[] = new int[] { 4, 5, 6 };
-    public static DifferentialDriveTrain.SmartControllerProfile driveMotorProfile= new DifferentialDriveTrain.SmartControllerProfile(IdleMode.kBrake, 35);
+    public static DifferentialDriveTrain.SmartControllerProfile driveMotorProfile= new DifferentialDriveTrain.SmartControllerProfile(IdleMode.kCoast, 0.25, 35);
     public static DifferentialDriveTrain.driveMotor driveTrainMotorType = driveMotor.kSparkMaxBrushless;
     public static boolean driveInvertLeft = true;
     public static boolean driveInvertRight = false;
@@ -69,7 +69,7 @@ public final class Constants {
     public static int ballPolycordMotorID = 8;
     public static int ballOutakeMotorID = 9;
     
-    public static double polycordGracePeriod = 7; // in seconds
+    public static double polycordGracePeriod = 0; // in seconds
 
     public static int ballLBumper = Controller.LB.buttonNum;
     public static int ballRBumper = Controller.RB.buttonNum;
