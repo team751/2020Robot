@@ -56,9 +56,9 @@ public class ArduinoGyro implements Gyro {
 
                 try {
                     heading = Double.valueOf(bufferStr);
-                    //System.out.println("heading set to " + heading);
+                    System.out.println("heading set to " + heading);
                 } catch(NumberFormatException e) {
-                    //System.out.println("ERROR = " + bufferStr);
+                    System.out.println("ERROR = " + bufferStr);
                 }
 
                 bufferStr = "";

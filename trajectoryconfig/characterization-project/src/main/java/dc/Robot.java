@@ -67,18 +67,16 @@ public class Robot extends TimedRobot {
   double priorAutospeed = 0;
   Number[] numberArray = new Number[10];
 
+  ArduinoGyro navx;
+
   @Override
   public void robotInit() {
-    // Motor inversions:
-    // 1,2,3 = true
-    // 4,5,6 = false
-
     if (!isReal()) SmartDashboard.putData(new SimEnabler());
 
     stick = new Joystick(0);
 
     leftMaster = new CANSparkMax(1, MotorType.kBrushless);
-    leftMaster.setInverted(true);
+    leftMaster.setInverted(false);
     leftMaster.setIdleMode(IdleMode.kBrake);
 
     leftEncoder = leftMaster.getEncoder();
@@ -91,20 +89,16 @@ public class Robot extends TimedRobot {
 
     CANSparkMax leftSlave0 = new CANSparkMax(2, MotorType.kBrushless);
     leftSlave0.follow(leftMaster);
-    leftMaster.setInverted(true);
     leftSlave0.setIdleMode(IdleMode.kBrake);
     CANSparkMax leftSlave1 = new CANSparkMax(3, MotorType.kBrushless);
     leftSlave1.follow(leftMaster);
-    leftMaster.setInverted(true);
     leftSlave1.setIdleMode(IdleMode.kBrake);
 
     CANSparkMax rightSlave0 = new CANSparkMax(5, MotorType.kBrushless);
-    rightSlave0.follow(rightMaster, true);
-    leftMaster.setInverted(false);
+    rightSlave0.follow(rightMaster);
     rightSlave0.setIdleMode(IdleMode.kBrake);
     CANSparkMax rightSlave1 = new CANSparkMax(6, MotorType.kBrushless);
-    rightSlave1.follow(rightMaster, true);
-    leftMaster.setInverted(false);
+    rightSlave1.follow(rightMaster);
     rightSlave1.setIdleMode(IdleMode.kBrake);
 
     //
@@ -113,7 +107,7 @@ public class Robot extends TimedRobot {
 
     // Note that the angle from the NavX and all implementors of wpilib Gyro
     // must be negated because getAngle returns a clockwise positive angle
-    Gyro navx = new ArduinoGyro();
+    navx = new ArduinoGyro();
     gyroAngleRadians = () -> -1 * Math.toRadians(navx.getAngle());
 
     //
@@ -138,9 +132,9 @@ public class Robot extends TimedRobot {
         -> leftEncoder.getVelocity() * encoderConstant / 60.;
 
     rightEncoderPosition = ()
-        -> rightEncoder.getPosition() * encoderConstant;
+        -> -rightEncoder.getPosition() * encoderConstant;
     rightEncoderRate = ()
-        -> rightEncoder.getVelocity() * encoderConstant / 60.;
+        -> -rightEncoder.getVelocity() * encoderConstant / 60.;
 
     // Reset encoders
     leftEncoder.setPosition(0);
@@ -167,6 +161,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("l_encoder_rate", leftEncoderRate.get());
     SmartDashboard.putNumber("r_encoder_pos", rightEncoderPosition.get());
     SmartDashboard.putNumber("r_encoder_rate", rightEncoderRate.get());
+    navx.update();
   }
 
   @Override
