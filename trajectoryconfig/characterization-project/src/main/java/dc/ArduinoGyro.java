@@ -51,8 +51,10 @@ public class ArduinoGyro implements Gyro {
             bufferStr += serial.readString();
 
             if(bufferStr.endsWith("e")) {
-                
-                bufferStr = bufferStr.split("e")[0];
+                String[] splitArray = bufferStr.split("e");
+
+
+                bufferStr = splitArray[splitArray.length - 1];
 
                 try {
                     heading = Double.valueOf(bufferStr);

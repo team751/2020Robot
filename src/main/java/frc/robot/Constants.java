@@ -89,12 +89,12 @@ public final class Constants {
     // Robot-specific PIDTrajectory constants 
     public static double trackWidthMeters = 0.586486; // horizontal distance between the wheels 
                                                     // (2019 robot = 0.19431 meters (.6375 inches))
-    public static double maxPIDTrajectoryDriveNeomVelocity = 3.9624;
-    public static double maxPIDTrajectoryDriveAcceleration = 2.4384; // m/sec^2
-    public static double ksVolts = 0.826; //update 
-    public static double kvVoltSecondsPerMeter = 0.0387; //update
-    public static double kaVoltSecondsSquaredPerMeter = 0.00535; //update
-    public static double kPDriveVel = 0.249; //update
+    public static double maxPIDTrajectoryDriveNeomVelocity = 1.5;//3.9624;
+    public static double maxPIDTrajectoryDriveAcceleration = 0.75;//2.4384; // m/sec^2
+    public static double ksVolts = 0.116; //update 
+    public static double kvVoltSecondsPerMeter = 0.0401; //update
+    public static double kaVoltSecondsSquaredPerMeter = 0.00971; //update
+    public static double kPDriveVel = 0.466; //update
 
     public static String pathWeaverJSONPath = "paths/Test.wpilib.json";
 
