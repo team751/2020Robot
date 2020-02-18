@@ -6,9 +6,9 @@ import frc.robot.subsystems.Panel;
 
 public class RotateThenSelect extends SequentialCommandGroup {
 
-    public RotateThenSelect (Panel panel, LightStrip lightStrip) {
-        addCommands(new RotateWheel(lightStrip, panel));
-        addCommands(new GoToColor(lightStrip, panel));
+    public RotateThenSelect (Panel panel, LightStrip[] lightStrips) {
+        addCommands(new RotateWheel(lightStrips, panel));
+        addCommands(new GoToColor(lightStrips, panel));
     }
     
 }

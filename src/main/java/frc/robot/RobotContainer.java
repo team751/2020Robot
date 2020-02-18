@@ -41,14 +41,16 @@ public class RobotContainer {
   private final ReversableArcadeDrive reversableArcadeDrive = new ReversableArcadeDrive(Constants.driverStick, differentialDriveTrain);
   private final SwitchDriveDirection switchDriveDirection = new SwitchDriveDirection(differentialDriveTrain);
 
-  private final LightStrip lightStrip = new LightStrip(Constants.LEDPort, Constants.LEDPort);
-  private final TeamColorLights teamColorLights = new TeamColorLights(lightStrip);
+  private final LightStrip[] lightStrips = new LightStrip[] {
+    new LightStrip(Constants.LEDPort, Constants.LEDPort, Constants.LEDOrientation)
+  };
+  private final TeamColorLights teamColorLights = new TeamColorLights(lightStrips);
   
   public final Panel panel = new Panel(Constants.leftColorsensorPort, Constants.rightColorsensorPort, Constants.panelSpinID, Constants.panelRotateID, Constants.panelTopLimitPort, Constants.panelBottomLimitPort);
-  private final GoToColor goToColor = new GoToColor(lightStrip, panel);
-  private final RotateWheel rotateWheel = new RotateWheel(lightStrip, panel);
+  private final GoToColor goToColor = new GoToColor(lightStrips, panel);
+  private final RotateWheel rotateWheel = new RotateWheel(lightStrips, panel);
   private final ManualPanel manualPanel = new ManualPanel(panel, Constants.driverStick, Constants.rightTrigger, Constants.leftTrigger);
-  private final RotateThenSelect rotateThenSelect = new RotateThenSelect(panel, lightStrip);
+  private final RotateThenSelect rotateThenSelect = new RotateThenSelect(panel, lightStrips);
   private final TogglePanelPosition togglePanelPosition = new TogglePanelPosition(panel);
 
   private final Camera camera = new Camera(0);
@@ -73,7 +75,9 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    lightStrip.setDefaultCommand(teamColorLights);
+    for (LightStrip l : lightStrips) {
+      l.setDefaultCommand(teamColorLights);
+    }
     panel.setDefaultCommand(manualPanel);
     differentialDriveTrain.setDefaultCommand(reversableArcadeDrive);
     ball.setDefaultCommand(defaultBall);

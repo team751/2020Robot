@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.core751.subsystems.DifferentialDriveTrain;
 import frc.robot.core751.subsystems.DifferentialDriveTrain.driveMotor;
+import frc.robot.core751.subsystems.LightStrip.Orientation;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -105,6 +106,7 @@ public final class Constants {
     /=====================================*/
     public static int LEDPort = 0;
     public static int LEDLength = 10;
+    public static Orientation LEDOrientation = Orientation.FORWARD;
 
 
     // Robot-specific PIDTrajectory constants 

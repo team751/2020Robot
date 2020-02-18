@@ -3,13 +3,14 @@ package frc.robot.commands.Panel;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.core751.subsystems.LightStrip;
+import frc.robot.core751.subsystems.LightStrip.PostProccessingEffects;
 import frc.robot.subsystems.Panel;
 import frc.robot.subsystems.Panel.PositionState;
 import frc.robot.subsystems.Panel.WheelColor;
 
 public class RotateWheel extends CommandBase {
 
-    public LightStrip lightStrip;
+    public LightStrip[] lightStrips;
     public Panel panel;
     public WheelColor wheelColor;
     public int[] currentHSV;
@@ -18,10 +19,13 @@ public class RotateWheel extends CommandBase {
     public float target;
 
 
-    public RotateWheel(LightStrip lightStrip, Panel panel) {
-        this.lightStrip = lightStrip;
+    public RotateWheel(LightStrip[] lightStrips, Panel panel) {
+        this.lightStrips = lightStrips;
         this.panel = panel;
-        addRequirements(panel, lightStrip);
+        addRequirements(panel);
+        for (LightStrip l : lightStrips) {
+            addRequirements(l);
+        }
         this.lastColor = WheelColor.UNKNOWN;
         this.currentHSV = new int[]{300, 255, 255};
         this.wheelColor = WheelColor.UNKNOWN;
@@ -36,12 +40,12 @@ public class RotateWheel extends CommandBase {
             this.panel.setPositionMotor(this.panel.getPassiveUpSpeed());
         }
         this.finished = false;
-        int[] c = panel.getColor().HSV;
-        for (int i = 0; i < lightStrip.length; i++) {
-            this.lightStrip.setHSVWave(i, 2, c);
+        for (LightStrip l : lightStrips) {
+            l.clearEffects();
+            l.setEffect(PostProccessingEffects.WAVE);
+            l.setEffect(PostProccessingEffects.HUE_SHIFT);
+            l.update();
         }
-        this.lightStrip.update();
-        this.lightStrip.start();
         this.panel.clearRotations();
 
         WheelColor targetColor = WheelColor.getTargetColor();
@@ -64,20 +68,10 @@ public class RotateWheel extends CommandBase {
         this.wheelColor = this.panel.getColor();
         SmartDashboard.putNumber("Target Rot", this.target);
         SmartDashboard.putNumber("Rotations", this.panel.getRotations());
-        if (Math.abs(this.currentHSV[0]-this.wheelColor.HSV[0]) < 8) {
-            this.currentHSV[0] = this.wheelColor.HSV[0];
+        for (LightStrip l : lightStrips) {
+            l.fillHSV(wheelColor.HSV[0], wheelColor.HSV[0], wheelColor.HSV[0]);
+            l.update();
         }
-        
-        if (this.currentHSV[0] < this.wheelColor.HSV[0]) {
-            this.currentHSV[0]+=8;
-        }else if (this.currentHSV[0] > this.wheelColor.HSV[0]){
-            this.currentHSV[0]-=8;
-        }
-        for (int i = 0; i < lightStrip.length; i++) {
-            this.lightStrip.setHSVWave(i, 1, this.currentHSV);
-        }
-        this.lastColor = this.wheelColor;
-        this.lightStrip.update();
         if (this.wheelColor == WheelColor.BETWEEN) {
             this.panel.setSpinMotor(1);
         }
@@ -85,6 +79,7 @@ public class RotateWheel extends CommandBase {
         if (Math.abs(Math.abs(this.target) - Math.abs(this.panel.getRotations()))<=0.125f) {
             speed = 1;
         }
+        this.lastColor = this.wheelColor;
         SmartDashboard.putNumber("speed", speed);
         //double speed = 1;
         if (this.panel.getRotations() < this.target) {
