@@ -22,16 +22,19 @@ public class TogglePanelPosition extends CommandBase {
         if (this.target == PositionState.UNKNOWN) {
             this.target = this.panel.lastPositionState;
         }
+
+        //This is a convaluted way to do this but we need it fast
+        if (this.target == PositionState.UP) {
+            this.target = PositionState.DOWN;
+        }else {
+            this.target = PositionState.UP;
+        }
+
         if (this.target == PositionState.UP) {
             this.panel.setPositionMotor(1);
         }
         if (this.target == PositionState.DOWN) {
             this.panel.setPositionMotor(-1);
-        }
-        if (this.target == PositionState.UP) {
-            this.target = PositionState.DOWN;
-        }else {
-            this.target = PositionState.UP;
         }
     }
 

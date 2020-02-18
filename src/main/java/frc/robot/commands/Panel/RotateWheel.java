@@ -81,7 +81,7 @@ public class RotateWheel extends CommandBase {
         if (this.wheelColor == WheelColor.BETWEEN) {
             this.panel.setSpinMotor(1);
         }
-        double speed = 0.5;
+        double speed = 1;
         if (Math.abs(Math.abs(this.target) - Math.abs(this.panel.getRotations()))<=0.125f) {
             speed = 1;
         }

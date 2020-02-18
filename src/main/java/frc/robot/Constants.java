@@ -59,6 +59,11 @@ public final class Constants {
     public static boolean driveInvertLeft = true;
     public static boolean driveInvertRight = false;
 
+    public static double maxSparkDeccelPeriod = 1;//0.5;
+    public static double sparkDeccelThreshold = 0.5;
+    public static int sparkDeccelSteps = 14;//7;
+    public static double minPauseDeaccelThreshold = 0.5;
+
     public static int driveStickPort = 0;
     public static Button driveSwitchDirectionButton = new JoystickButton(driverStick, Controller.START.buttonNum);
 
