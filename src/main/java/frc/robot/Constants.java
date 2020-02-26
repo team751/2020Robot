@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj2.command.button.Button;
@@ -52,7 +54,10 @@ public final class Constants {
     /================================*/
     public static int leftDrivetrainIDs[] = new int[] { 1, 2, 3 };
     public static int rightDrivetrainIDs[] = new int[] { 4, 5, 6 };
+    public static DifferentialDriveTrain.SmartControllerProfile driveMotorProfile= new DifferentialDriveTrain.SmartControllerProfile(IdleMode.kCoast, 0.25, 35);
     public static DifferentialDriveTrain.driveMotor driveTrainMotorType = driveMotor.kSparkMaxBrushless;
+    public static boolean driveInvertLeft = true;
+    public static boolean driveInvertRight = false;
 
     public static int driveStickPort = 0;
 
@@ -89,14 +94,14 @@ public final class Constants {
     // Robot-specific PIDTrajectory constants 
     public static double trackWidthMeters = 0.586486; // horizontal distance between the wheels 
                                                     // (2019 robot = 0.19431 meters (.6375 inches))
-    public static double maxPIDTrajectoryDriveNeomVelocity = 1.5;//3.9624;
-    public static double maxPIDTrajectoryDriveAcceleration = 0.75;//2.4384; // m/sec^2
-    public static double ksVolts = 0.116; //update 
-    public static double kvVoltSecondsPerMeter = 0.0401; //update
-    public static double kaVoltSecondsSquaredPerMeter = 0.00971; //update
-    public static double kPDriveVel = 0.466; //update
+    public static double maxPIDTrajectoryDriveNeomVelocity = 3.5;//3.9624;//0.01;//1.5; // Free speed for 2020 Robot: 5.33 m/s
+    public static double maxPIDTrajectoryDriveAcceleration = 1.9;//2.4384;//0.01;//0.75; // m/sec^2
+    public static double ksVolts = 0.135; //update original .135
+    public static double kvVoltSecondsPerMeter = 1.57; //update
+    public static double kaVoltSecondsSquaredPerMeter = 0.366; //update
+    public static double kPDriveVel = 14.0; //update
 
-    public static String pathWeaverJSONPath = "paths/Test.wpilib.json";
+    public static String pathWeaverJSONPath = "paths/BasicBall.wpilib.json";
 
     // Universal PIDTrajectory constants
     public static double ramseteB = 2;
