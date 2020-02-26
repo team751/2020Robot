@@ -37,28 +37,28 @@ public class RobotContainer {
 
   
 
-  private final DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain(Constants.leftDrivetrainIDs, Constants.rightDrivetrainIDs, Constants.driveTrainMotorType, Constants.driveMotorProfile, Constants.driveInvertLeft, Constants.driveInvertRight);
-  private final ReversableArcadeDrive reversableArcadeDrive = new ReversableArcadeDrive(Constants.driverStick, differentialDriveTrain);
-  private final SwitchDriveDirection switchDriveDirection = new SwitchDriveDirection(differentialDriveTrain);
+  // private final DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain(Constants.leftDrivetrainIDs, Constants.rightDrivetrainIDs, Constants.driveTrainMotorType, Constants.driveMotorProfile, Constants.driveInvertLeft, Constants.driveInvertRight);
+  // private final ReversableArcadeDrive reversableArcadeDrive = new ReversableArcadeDrive(Constants.driverStick, differentialDriveTrain);
+  // private final SwitchDriveDirection switchDriveDirection = new SwitchDriveDirection(differentialDriveTrain);
 
   private final LightStrip[] lightStrips = new LightStrip[] {
-    new LightStrip(Constants.LEDPort, Constants.LEDPort, Constants.LEDOrientation)
+    new LightStrip(Constants.LEDPort, Constants.LEDLength, Constants.LEDOrientation)
   };
   private final TeamColorLights teamColorLights = new TeamColorLights(lightStrips);
   
-  public final Panel panel = new Panel(Constants.leftColorsensorPort, Constants.rightColorsensorPort, Constants.panelSpinID, Constants.panelRotateID, Constants.panelTopLimitPort, Constants.panelBottomLimitPort);
-  private final GoToColor goToColor = new GoToColor(lightStrips, panel);
-  private final RotateWheel rotateWheel = new RotateWheel(lightStrips, panel);
-  private final ManualPanel manualPanel = new ManualPanel(panel, Constants.driverStick, Constants.rightTrigger, Constants.leftTrigger);
-  private final RotateThenSelect rotateThenSelect = new RotateThenSelect(panel, lightStrips);
-  private final TogglePanelPosition togglePanelPosition = new TogglePanelPosition(panel);
+  // public final Panel panel = new Panel(Constants.leftColorsensorPort, Constants.rightColorsensorPort, Constants.panelSpinID, Constants.panelRotateID, Constants.panelTopLimitPort, Constants.panelBottomLimitPort);
+  // private final GoToColor goToColor = new GoToColor(lightStrips, panel);
+  // private final RotateWheel rotateWheel = new RotateWheel(lightStrips, panel);
+  // private final ManualPanel manualPanel = new ManualPanel(panel, Constants.driverStick, Constants.rightTrigger, Constants.leftTrigger);
+  // private final RotateThenSelect rotateThenSelect = new RotateThenSelect(panel, lightStrips);
+  // private final TogglePanelPosition togglePanelPosition = new TogglePanelPosition(panel);
 
-  private final Camera camera = new Camera(0);
+  // private final Camera camera = new Camera(0);
 
-  private final Ball ball = new Ball(Constants.ballIntakeMotorID, Constants.ballPolycordMotorID, Constants.ballOutakeMotorID);
-  private final DefaultBall defaultBall = new DefaultBall(ball, Constants.driverStick, Constants.ballLBumper, Constants.ballRBumper, Constants.ballOutButton, Constants.ballReverseOutButton);
+  // private final Ball ball = new Ball(Constants.ballIntakeMotorID, Constants.ballPolycordMotorID, Constants.ballOutakeMotorID);
+  // private final DefaultBall defaultBall = new DefaultBall(ball, Constants.driverStick, Constants.ballLBumper, Constants.ballRBumper, Constants.ballOutButton, Constants.ballReverseOutButton);
 
-  private final PowerDistributionPanel pdp = new PowerDistributionPanel();
+  // private final PowerDistributionPanel pdp = new PowerDistributionPanel();
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -78,20 +78,20 @@ public class RobotContainer {
     for (LightStrip l : lightStrips) {
       l.setDefaultCommand(teamColorLights);
     }
-    panel.setDefaultCommand(manualPanel);
-    differentialDriveTrain.setDefaultCommand(reversableArcadeDrive);
-    ball.setDefaultCommand(defaultBall);
+    // panel.setDefaultCommand(manualPanel);
+    // differentialDriveTrain.setDefaultCommand(reversableArcadeDrive);
+    // ball.setDefaultCommand(defaultBall);
   
-    Constants.panelToggleButton.whenPressed(togglePanelPosition);
+    // Constants.panelToggleButton.whenPressed(togglePanelPosition);
 
-    Constants.driveSwitchDirectionButton.whenPressed(switchDriveDirection);
+    // Constants.driveSwitchDirectionButton.whenPressed(switchDriveDirection);
 
-    SmartDashboard.putData(pdp);
+    // SmartDashboard.putData(pdp);
     
-    SmartDashboard.putData(togglePanelPosition);
-    SmartDashboard.putData(goToColor);
-    SmartDashboard.putData(rotateWheel);
-    SmartDashboard.putData(rotateThenSelect);
+    // SmartDashboard.putData(togglePanelPosition);
+    // SmartDashboard.putData(goToColor);
+    // SmartDashboard.putData(rotateWheel);
+    // SmartDashboard.putData(rotateThenSelect);
   }
 
 

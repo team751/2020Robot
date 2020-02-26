@@ -105,8 +105,8 @@ public final class Constants {
      /===========Lightstrip=================/
     /=====================================*/
     public static int LEDPort = 0;
-    public static int LEDLength = 10;
-    public static Orientation LEDOrientation = Orientation.FORWARD;
+    public static int LEDLength = 15;
+    public static Orientation LEDOrientation = Orientation.HORIZONTAL;
 
 
     // Robot-specific PIDTrajectory constants 
