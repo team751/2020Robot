@@ -38,6 +38,8 @@ public class ManualPanel extends CommandBase {
             } 
         } else if (this.panel.positionState == PositionState.UP){
             this.panel.setPositionMotor(this.panel.getPassiveUpSpeed());
+        } else if (this.panel.positionState == PositionState.DOWN){
+            this.panel.setPositionMotor(-this.panel.getPassiveUpSpeed());
         }else {
             this.panel.setPositionMotor(0);
         }

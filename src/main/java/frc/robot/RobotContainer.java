@@ -18,6 +18,7 @@ import frc.robot.core751.commands.Drivetrain.ArcadeDrive;
 import frc.robot.core751.commands.Drivetrain.ReversableArcadeDrive;
 import frc.robot.core751.commands.Drivetrain.SwitchDriveDirection;
 import frc.robot.core751.commands.lightstrip.TeamColorLights;
+import frc.robot.core751.subsystems.Camera;
 import frc.robot.core751.subsystems.DifferentialDriveTrain;
 import frc.robot.core751.subsystems.LightStrip;
 import frc.robot.subsystems.*;
@@ -40,15 +41,19 @@ public class RobotContainer {
   private final ReversableArcadeDrive reversableArcadeDrive = new ReversableArcadeDrive(Constants.driverStick, differentialDriveTrain);
   private final SwitchDriveDirection switchDriveDirection = new SwitchDriveDirection(differentialDriveTrain);
 
-  private final LightStrip lightStrip = new LightStrip(Constants.LEDPort, Constants.LEDPort);
-  private final TeamColorLights teamColorLights = new TeamColorLights(lightStrip);
+  private final LightStrip[] lightStrips = new LightStrip[] {
+    new LightStrip(Constants.LEDPort, Constants.LEDLength, Constants.LEDOrientation)
+  };
+  private final TeamColorLights teamColorLights = new TeamColorLights(lightStrips);
   
-  private final Panel panel = new Panel(Constants.leftColorsensorPort, Constants.rightColorsensorPort, Constants.panelSpinID, Constants.panelRotateID, Constants.panelTopLimitPort, Constants.panelBottomLimitPort);
-  private final GoToColor goToColor = new GoToColor(lightStrip, panel);
-  private final RotateWheel rotateWheel = new RotateWheel(lightStrip, panel);
+  public final Panel panel = new Panel(Constants.leftColorsensorPort, Constants.rightColorsensorPort, Constants.panelSpinID, Constants.panelRotateID, Constants.panelTopLimitPort, Constants.panelBottomLimitPort);
+  private final GoToColor goToColor = new GoToColor(lightStrips, panel);
+  private final RotateWheel rotateWheel = new RotateWheel(lightStrips, panel);
   private final ManualPanel manualPanel = new ManualPanel(panel, Constants.driverStick, Constants.rightTrigger, Constants.leftTrigger);
-  private final RotateThenSelect rotateThenSelect = new RotateThenSelect(panel, lightStrip);
+  private final RotateThenSelect rotateThenSelect = new RotateThenSelect(panel, lightStrips);
   private final TogglePanelPosition togglePanelPosition = new TogglePanelPosition(panel);
+
+  private final Camera camera = new Camera(0);
 
   private final Ball ball = new Ball(Constants.ballIntakeMotorID, Constants.ballPolycordMotorID, Constants.ballOutakeMotorID);
   private final DefaultBall defaultBall = new DefaultBall(ball, Constants.driverStick, Constants.ballLBumper, Constants.ballRBumper, Constants.ballOutButton, Constants.ballReverseOutButton);
@@ -70,10 +75,14 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    lightStrip.setDefaultCommand(teamColorLights);
+    for (LightStrip l : lightStrips) {
+      l.setDefaultCommand(teamColorLights);
+    }
     panel.setDefaultCommand(manualPanel);
     differentialDriveTrain.setDefaultCommand(reversableArcadeDrive);
     ball.setDefaultCommand(defaultBall);
+  
+    Constants.panelToggleButton.whenPressed(togglePanelPosition);
 
     Constants.driveSwitchDirectionButton.whenPressed(switchDriveDirection);
 

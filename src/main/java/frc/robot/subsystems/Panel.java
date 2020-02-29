@@ -20,10 +20,12 @@ import frc.robot.core751.wrappers.WCANSparkMax;
 public class Panel extends SubsystemBase {
 
     public enum WheelColor {
-        BLUE(240, 255, 255, true), GREEN(120, 255, 255, true), RED(0, 255, 255, true), YELLOW(60, 255, 255, true),
-        UNKNOWN(300, 255, 255, false), BETWEEN(200, 255, 255, false);
+        BLUE(240, 255, 255, true, "Blue"), GREEN(120, 255, 255, true, "Green"), 
+        RED(0, 255, 255, true, "Red"), YELLOW(60, 255, 255, true, "Yellow"),
+        UNKNOWN(300, 255, 255, false, "Unknown"), BETWEEN(200, 255, 255, false, "Between");
 
         public final int[] HSV;
+        public String colorName;
         public boolean color;
 
         public static WheelColor getTargetColor() {
@@ -47,9 +49,10 @@ public class Panel extends SubsystemBase {
             }
         }
 
-        private WheelColor(int h, int s, int v, boolean color) {
+        private WheelColor(int h, int s, int v, boolean color, String colorName) {
             this.HSV = new int[] { h, s, v };
             this.color = color;
+            this.colorName = colorName;
         }
 
         public int directionTo(WheelColor o) {
@@ -69,6 +72,10 @@ public class Panel extends SubsystemBase {
             return this.ordinal() - o.ordinal();
         }
 
+        @Override
+        public String toString() {
+            return colorName;
+        }
     }
 
     public enum PositionState {
@@ -104,9 +111,16 @@ public class Panel extends SubsystemBase {
 
     public Panel(Port firstPort, Port secondPort, int speedMotorID, int positionMotorID, int topSwitchPin, int bottomSwitchPin) {
         System.out.println("First port below");
-        this.firstColorSensor = new ColorSensorV3(firstPort);
+        try {
+            System.out.println("Port number =" + firstPort.value);
+            this.firstColorSensor = new ColorSensorV3(firstPort);
+        } catch (Exception e) {System.out.println(e);}
+
         System.out.println("second port below");
-        this.secondColorSensor = new ColorSensorV3(secondPort);
+        try {
+            System.out.println("Port number =" + secondPort.value);
+            this.secondColorSensor = new ColorSensorV3(secondPort);
+        } catch (Exception e) {System.out.println(e);}  
         this.rotations = 0;
         this.colorMatcher = new ColorMatch();
         colorMatcher.addColorMatch(kBlueTarget);
@@ -222,13 +236,17 @@ public class Panel extends SubsystemBase {
 
 
     public boolean touchingBottom() {
-        //return this.bottomLimitSwitch.get();
-        return SmartDashboard.getBoolean("Bottom Limit", false);
+        SmartDashboard.putBoolean("Bottom Limit", this.bottomLimitSwitch.get());
+
+        return this.bottomLimitSwitch.get();
+        //return SmartDashboard.getBoolean("Bottom Limit", false);
     }
 
     public boolean touchingTop() {
-        // this.topLimitSwitch.get();
-        return SmartDashboard.getBoolean("Top Limit", false);
+        SmartDashboard.putBoolean("Top Limit", this.topLimitSwitch.get());
+
+        return this.topLimitSwitch.get();
+        //return SmartDashboard.getBoolean("Top Limit", false);
     }
 
     public void setPositionMotor(double speed) {

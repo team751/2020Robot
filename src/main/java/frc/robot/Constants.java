@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.core751.subsystems.DifferentialDriveTrain;
 import frc.robot.core751.subsystems.DifferentialDriveTrain.driveMotor;
+import frc.robot.core751.subsystems.LightStrip.Orientation;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -59,6 +60,11 @@ public final class Constants {
     public static boolean driveInvertLeft = true;
     public static boolean driveInvertRight = false;
 
+    public static double maxSparkDeccelPeriod = 1;//0.5;
+    public static double sparkDeccelThreshold = 0.5;
+    public static int sparkDeccelSteps = 14;//7;
+    public static double minPauseDeaccelThreshold = 0.5;
+
     public static int driveStickPort = 0;
     public static Button driveSwitchDirectionButton = new JoystickButton(driverStick, Controller.START.buttonNum);
 
@@ -99,7 +105,8 @@ public final class Constants {
      /===========Lightstrip=================/
     /=====================================*/
     public static int LEDPort = 0;
-    public static int LEDLength = 10;
+    public static int LEDLength = 15;
+    public static Orientation LEDOrientation = Orientation.HORIZONTAL;
 
 
     // Robot-specific PIDTrajectory constants 
