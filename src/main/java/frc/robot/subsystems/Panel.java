@@ -14,8 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.core751.wrappers.WCANSparkMax;
-import frc.robot.core751.wrappers.WVictorSPX;
+import core751.wrappers.WVictorSPX;
 
 public class Panel extends SubsystemBase {
 

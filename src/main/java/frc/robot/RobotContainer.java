@@ -18,8 +18,8 @@ import frc.robot.commands.Panel.RotateThenSelect;
 import frc.robot.commands.Panel.RotateWheel;
 import frc.robot.commands.Panel.SensorLights;
 import frc.robot.commands.Panel.TogglePanelPosition;
-import frc.robot.core751.commands.lightstrip.TeamColorLights;
-import frc.robot.core751.subsystems.LightStrip;
+import core751.commands.lightstrip.TeamColorLights;
+import core751.subsystems.LightStrip;
 import frc.robot.subsystems.Panel;
 
 /**
