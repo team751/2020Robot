@@ -109,7 +109,7 @@ public final class Constants {
 
     public static int FTLEDstart = 0;
     public static int FTLEDLength = 15;
-    public static Orientation LFTEDOrientation = Orientation.HORIZONTAL;
+    public static Orientation FTLEDOrientation = Orientation.HORIZONTAL;
 
     public static int FBLEDstart = 16;
     public static int FBLEDLength = 28;
