@@ -59,6 +59,9 @@ public final class Constants {
     public static DifferentialDriveTrain.driveMotor driveTrainMotorType = driveMotor.kSparkMaxBrushless;
     public static boolean driveInvertLeft = true;
     public static boolean driveInvertRight = false;
+    
+    public static double simpleDriveAutonLengthSeconds = 1.75;
+    public static double simpleBallAutonLengthSeconds = 5;
 
     public static double maxSparkDeccelPeriod = 1;//0.5;
     public static double sparkDeccelThreshold = 0.5;
@@ -104,9 +107,13 @@ public final class Constants {
      /*======================================/
      /===========Lightstrip=================/
     /=====================================*/
-    public static int LEDPort = 0;
-    public static int LEDLength = 15;
-    public static Orientation LEDOrientation = Orientation.HORIZONTAL;
+    public static int FTLEDPort = 0;
+    public static int FTLEDLength = 15;
+    public static Orientation FTLEDOrientation = Orientation.HORIZONTAL;
+
+    public static int FBLEDPort = 1;
+    public static int FBLEDLength = 13;
+    public static Orientation FBLEDOrientation = Orientation.HORIZONTAL;
 
 
     // Robot-specific PIDTrajectory constants 
