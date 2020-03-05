@@ -70,7 +70,7 @@ public class RobotContainer {
     } catch (Exception e) {
       System.out.println(e);
     }
-    // Configure the button bindings
+    //Configure the button bindings
     configureButtonBindings();
   }
 
@@ -92,7 +92,7 @@ public class RobotContainer {
 
     Constants.driveSwitchDirectionButton.whenPressed(switchDriveDirection);
 
-    SmartDashboard.putData(pdp);
+     SmartDashboard.putData(pdp);
     
     SmartDashboard.putData(togglePanelPosition);
     SmartDashboard.putData(goToColor);
