@@ -42,7 +42,8 @@ public class RobotContainer {
   private final SwitchDriveDirection switchDriveDirection = new SwitchDriveDirection(differentialDriveTrain);
 
   private final LightStrip[] lightStrips = new LightStrip[] {
-    new LightStrip(Constants.LEDPort, Constants.LEDLength, Constants.LEDOrientation)
+    new LightStrip(Constants.FTLEDstart, Constants.FTLEDLength, Constants.FTLEDOrientation),
+    new LightStrip(Constants.FBLEDstart, Constants.FBLEDLength, Constants.FBLEDOrientation),
   };
   private final TeamColorLights teamColorLights = new TeamColorLights(lightStrips);
   
@@ -53,7 +54,7 @@ public class RobotContainer {
   private final RotateThenSelect rotateThenSelect = new RotateThenSelect(panel, lightStrips);
   private final TogglePanelPosition togglePanelPosition = new TogglePanelPosition(panel);
 
-  private final Camera camera = new Camera(0);
+  private Camera camera;
 
   private final Ball ball = new Ball(Constants.ballIntakeMotorID, Constants.ballPolycordMotorID, Constants.ballOutakeMotorID);
   private final DefaultBall defaultBall = new DefaultBall(ball, Constants.driverStick, Constants.ballLBumper, Constants.ballRBumper, Constants.ballOutButton, Constants.ballReverseOutButton);
@@ -64,7 +65,12 @@ public class RobotContainer {
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    // Configure the button bindings
+    try {
+      this.camera = new Camera(0);
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+    //Configure the button bindings
     configureButtonBindings();
   }
 
@@ -86,7 +92,7 @@ public class RobotContainer {
 
     Constants.driveSwitchDirectionButton.whenPressed(switchDriveDirection);
 
-    SmartDashboard.putData(pdp);
+     SmartDashboard.putData(pdp);
     
     SmartDashboard.putData(togglePanelPosition);
     SmartDashboard.putData(goToColor);
