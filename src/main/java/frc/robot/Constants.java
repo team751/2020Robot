@@ -59,6 +59,9 @@ public final class Constants {
     public static DifferentialDriveTrain.driveMotor driveTrainMotorType = driveMotor.kSparkMaxBrushless;
     public static boolean driveInvertLeft = true;
     public static boolean driveInvertRight = false;
+    
+    public static double simpleDriveAutonLengthSeconds = 1.75;
+    public static double simpleBallAutonLengthSeconds = 5;
 
     public static double maxSparkDeccelPeriod = 1;//0.5;
     public static double sparkDeccelThreshold = 0.5;

@@ -22,6 +22,7 @@ import frc.robot.core751.subsystems.Camera;
 import frc.robot.core751.subsystems.DifferentialDriveTrain;
 import frc.robot.core751.subsystems.LightStrip;
 import frc.robot.subsystems.*;
+import frc.robot.commands.SimpleAuton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -109,6 +110,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     //TODO: Add auto command
-    return null;
+    return new SimpleAuton(differentialDriveTrain, ball);
   }
 }
