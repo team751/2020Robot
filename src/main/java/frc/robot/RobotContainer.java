@@ -92,6 +92,8 @@ public class RobotContainer {
     Constants.panelToggleButton.whenPressed(togglePanelPosition);
 
     Constants.driveSwitchDirectionButton.whenPressed(switchDriveDirection);
+    Constants.panelColorSpinButton.whenPressed(rotateWheel);
+    Constants.panelColorButton.whenPressed(goToColor);
 
      SmartDashboard.putData(pdp);
     

@@ -73,15 +73,14 @@ public class RotateWheel extends CommandBase {
             l.update();
         }
         if (this.wheelColor == WheelColor.BETWEEN) {
-            this.panel.setSpinMotor(1);
+            this.panel.setSpinMotor(0.5);
         }
-        double speed = 1;
+        double speed = 0.5;
         if (Math.abs(Math.abs(this.target) - Math.abs(this.panel.getRotations()))<=0.125f) {
-            speed = 1;
+            speed = 0.5;
         }
         this.lastColor = this.wheelColor;
         SmartDashboard.putNumber("speed", speed);
-        //double speed = 1;
         if (this.panel.getRotations() < this.target) {
             this.panel.setSpinMotor(-speed);
         }else if (this.panel.getRotations() > this.target) {

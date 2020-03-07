@@ -103,6 +103,8 @@ public final class Constants {
     public static int rightTrigger = 3;
 
     public static Button panelToggleButton = new JoystickButton(driverStick, Controller.Y.buttonNum);
+    public static Button panelColorSpinButton = new JoystickButton(driverStick, Controller.X.buttonNum);
+    public static Button panelColorButton = new JoystickButton(driverStick, Controller.B.buttonNum);
 
      /*======================================/
      /===========Lightstrip=================/

@@ -48,6 +48,7 @@ public class GoToColor extends CommandBase {
         }
         this.panel.clearRotations();
         this.targetColor = WheelColor.getTargetColor();
+        System.out.println("INITIALIZED");
     }
 
     @Override
@@ -55,6 +56,11 @@ public class GoToColor extends CommandBase {
     public void execute(){
         this.wheelColor = this.panel.getColor();
         
+
+        if(this.targetColor == null) {
+            this.targetColor = WheelColor.getTargetColor();
+        }
+
         SmartDashboard.putNumber("Rotations", this.panel.getRotations());
         SmartDashboard.putString("Color", this.wheelColor.name());
         for (LightStrip l : lightStrips) {
@@ -76,7 +82,7 @@ public class GoToColor extends CommandBase {
             this.finished = true;
         }
         if (dist == 2) {
-            this.panel.setSpinMotor(1);
+            this.panel.setSpinMotor(0.5);
         }else {
             this.panel.setSpinMotor(dist*0.5);
         }
