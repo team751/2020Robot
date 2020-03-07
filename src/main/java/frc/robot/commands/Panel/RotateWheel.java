@@ -60,6 +60,7 @@ public class RotateWheel extends CommandBase {
     //         }
     //     }
         this.target = 3.5f;
+        System.out.println("Initalized rotations");
      }
 
     @Override
