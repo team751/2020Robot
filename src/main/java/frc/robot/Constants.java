@@ -94,6 +94,9 @@ public final class Constants {
     public static int rightTrigger = 3;
 
     public static Button panelToggleButton = new JoystickButton(driverStick, Controller.Y.buttonNum);
+    public static Button panelSpinColor = new JoystickButton(driverStick, Controller.X.buttonNum);
+    public static Button panelSpinRotations = new JoystickButton(driverStick, Controller.B.buttonNum);
+
 
      /*======================================/
      /===========Lightstrip=================/

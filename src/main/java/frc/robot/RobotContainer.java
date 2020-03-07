@@ -76,6 +76,8 @@ public class RobotContainer {
     ball.setDefaultCommand(defaultBall);
 
     Constants.driveSwitchDirectionButton.whenPressed(switchDriveDirection);
+    Constants.panelSpinColor.whenPressed(rotateThenSelect);
+    Constants.panelSpinRotations.whenPressed(rotateWheel);
 
     SmartDashboard.putData(pdp);
     
