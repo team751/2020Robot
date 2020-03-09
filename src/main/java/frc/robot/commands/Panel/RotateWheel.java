@@ -2,6 +2,7 @@ package frc.robot.commands.Panel;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.core751.subsystems.LightStrip;
 import frc.robot.core751.subsystems.LightStrip.PostProccessingEffects;
 import frc.robot.subsystems.Panel;
@@ -59,33 +60,43 @@ public class RotateWheel extends CommandBase {
     //             this.target = -3.125f + (dist*0.125f);
     //         }
     //     }
-        this.target = 3.5f;
+        this.target = 2.4f;
         System.out.println("Initalized rotations");
      }
 
     @Override
     
     public void execute(){
+        // I AM SPEED
+        double rotations = this.panel.getRotations();
+        double speed = Math.max(Math.log10(-(Math.abs(rotations) - Constants.autoSpeedDecreasePoint - 2)) + 
+                                (1 - Math.log10(2)) - 0.6, 0.25);
+
         this.wheelColor = this.panel.getColor();
+
+        if(rotations >= this.target) {
+            this.finished = true;
+        }
+
         SmartDashboard.putNumber("Target Rot", this.target);
-        SmartDashboard.putNumber("Rotations", this.panel.getRotations());
+        SmartDashboard.putNumber("Rotations", rotations);
+        SmartDashboard.putString("Color", this.panel.getColor().name());
+        SmartDashboard.putNumber("RotateWheel Speed", speed);
+
         for (LightStrip l : lightStrips) {
             l.fillHSV(wheelColor.HSV[0], wheelColor.HSV[0], wheelColor.HSV[0]);
             l.update();
         }
         if (this.wheelColor == WheelColor.BETWEEN) {
-            this.panel.setSpinMotor(0.5);
+            this.panel.setSpinMotor(speed);
         }
-        double speed = 0.5;
-        if (Math.abs(Math.abs(this.target) - Math.abs(this.panel.getRotations()))<=0.125f) {
-            speed = 0.5;
-        }
+
         this.lastColor = this.wheelColor;
         SmartDashboard.putNumber("speed", speed);
         if (this.panel.getRotations() < this.target) {
             this.panel.setSpinMotor(-speed);
         }else if (this.panel.getRotations() > this.target) {
-            this.panel.setSpinMotor(speed);
+            this.panel.setSpinMotor(speed); 
         }else {
             this.panel.stopSpinMotor();
             this.finished = true;

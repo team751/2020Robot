@@ -69,7 +69,7 @@ public class GoToColor extends CommandBase {
         }
         this.lastColor = this.wheelColor;
         if (this.wheelColor == WheelColor.BETWEEN) {
-            this.panel.setSpinMotor(0.25);
+            this.panel.setSpinMotor(0.17);
         }
         if (this.wheelColor == WheelColor.UNKNOWN) {
             this.panel.stopSpinMotor();
@@ -82,9 +82,9 @@ public class GoToColor extends CommandBase {
             this.finished = true;
         }
         if (dist == 2) {
-            this.panel.setSpinMotor(0.25);
+            this.panel.setSpinMotor(0.17);
         }else {
-            this.panel.setSpinMotor(dist*0.25);
+            this.panel.setSpinMotor(dist*0.17);
         }
     
     }
