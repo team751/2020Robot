@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.Ball.*;
 import frc.robot.commands.Panel.*;
+import frc.robot.core751.commands.JoystickPlayer;
+import frc.robot.core751.commands.JoystickRecorder;
 import frc.robot.core751.commands.Drivetrain.ArcadeDrive;
 import frc.robot.core751.commands.Drivetrain.ReversableArcadeDrive;
 import frc.robot.core751.commands.Drivetrain.SwitchDriveDirection;
@@ -37,30 +39,25 @@ public class RobotContainer {
   // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   
+  private final Camera camera0 = new Camera(0);
+  private final Camera camera1 = new Camera(1);
 
   private final DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain(Constants.leftDrivetrainIDs, Constants.rightDrivetrainIDs, Constants.driveTrainMotorType, Constants.driveMotorProfile, Constants.driveInvertLeft, Constants.driveInvertRight);
   private final ReversableArcadeDrive reversableArcadeDrive = new ReversableArcadeDrive(Constants.driverStick, differentialDriveTrain);
-  private final SwitchDriveDirection switchDriveDirection = new SwitchDriveDirection(differentialDriveTrain);
+  private final SwitchDriveDirection switchDriveDirection = new SwitchDriveDirection(differentialDriveTrain,0,1);
 
-  private final LightStrip[] lightStrips = new LightStrip[] {
-    new LightStrip(0, Constants.FTLEDLength, Constants.FTLEDOrientation),
-    //new LightStrip(1, Constants.FBLEDLength, Constants.FBLEDOrientation)
-  };
-  private final TeamColorLights teamColorLights = new TeamColorLights(lightStrips);
-  
   public final Panel panel = new Panel(Constants.leftColorsensorPort, Constants.rightColorsensorPort, Constants.panelSpinID, Constants.panelRotateID, Constants.panelTopLimitPort, Constants.panelBottomLimitPort);
-  private final GoToColor goToColor = new GoToColor(lightStrips, panel);
-  private final RotateWheel rotateWheel = new RotateWheel(lightStrips, panel);
   private final ManualPanel manualPanel = new ManualPanel(panel, Constants.driverStick, Constants.rightTrigger, Constants.leftTrigger);
-  private final RotateThenSelect rotateThenSelect = new RotateThenSelect(panel, lightStrips);
-  private final TogglePanelPosition togglePanelPosition = new TogglePanelPosition(panel);
-
-  private final Camera camera = new Camera(0);
 
   private final Ball ball = new Ball(Constants.ballIntakeMotorID, Constants.ballPolycordMotorID, Constants.ballOutakeMotorID);
   private final DefaultBall defaultBall = new DefaultBall(ball, Constants.driverStick, Constants.ballLBumper, Constants.ballRBumper, Constants.ballOutButton, Constants.ballReverseOutButton);
 
   private final PowerDistributionPanel pdp = new PowerDistributionPanel();
+
+  private final JoystickRecorder joystickRecorder = new JoystickRecorder(Constants.driverStick);
+  private final JoystickPlayer joystickPlayer = new JoystickPlayer(Replay.array, Constants.driverStick);
+
+
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -77,23 +74,18 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    for (LightStrip l : lightStrips) {
-      l.setDefaultCommand(teamColorLights);
-    }
+
     panel.setDefaultCommand(manualPanel);
     differentialDriveTrain.setDefaultCommand(reversableArcadeDrive);
     ball.setDefaultCommand(defaultBall);
   
-    Constants.panelToggleButton.whenPressed(togglePanelPosition);
 
     Constants.driveSwitchDirectionButton.whenPressed(switchDriveDirection);
 
     SmartDashboard.putData(pdp);
+    SmartDashboard.putData(joystickRecorder);
+    SmartDashboard.putData(joystickPlayer);
     
-    SmartDashboard.putData(togglePanelPosition);
-    SmartDashboard.putData(goToColor);
-    SmartDashboard.putData(rotateWheel);
-    SmartDashboard.putData(rotateThenSelect);
   }
 
 

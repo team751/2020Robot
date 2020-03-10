@@ -15,7 +15,8 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.core751.subsystems.DifferentialDriveTrain;
 import frc.robot.core751.subsystems.DifferentialDriveTrain.driveMotor;
-import frc.robot.core751.subsystems.LightStrip.Orientation;
+import frc.robot.core751.wrappers.OverrideableJoystick;
+
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -48,7 +49,7 @@ public final class Constants {
 
     }
     
-    public static Joystick driverStick = new Joystick(Constants.driveStickPort);
+    public static OverrideableJoystick driverStick = new OverrideableJoystick(Constants.driveStickPort);
 
       /*================================/ 
      /===========Drive Train===========/
@@ -103,17 +104,6 @@ public final class Constants {
     public static int rightTrigger = 3;
 
     public static Button panelToggleButton = new JoystickButton(driverStick, Controller.Y.buttonNum);
-
-     /*======================================/
-     /===========Lightstrip=================/
-    /=====================================*/
-    public static int FTLEDPort = 0;
-    public static int FTLEDLength = 15;
-    public static Orientation FTLEDOrientation = Orientation.HORIZONTAL;
-
-    public static int FBLEDPort = 1;
-    public static int FBLEDLength = 13;
-    public static Orientation FBLEDOrientation = Orientation.HORIZONTAL;
 
 
     // Robot-specific PIDTrajectory constants 
