@@ -46,5 +46,7 @@ public class ManualPanel extends CommandBase {
 
         this.panel.setSpinMotor(this.stick.getRawAxis(rightTrigger)-this.stick.getRawAxis(leftTrigger));
         
+        SmartDashboard.putNumber("Rotations", this.panel.getRotations());
+        SmartDashboard.putString("Color", this.panel.getColor().name());
     }
 }
