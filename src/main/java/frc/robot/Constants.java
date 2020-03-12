@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.core751.subsystems.DifferentialDriveTrain;
 import frc.robot.core751.subsystems.DifferentialDriveTrain.driveMotor;
 import frc.robot.core751.subsystems.LightStrip.Orientation;
+import frc.robot.core751.wrappers.OverrideableJoystick;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -48,7 +49,7 @@ public final class Constants {
 
     }
     
-    public static Joystick driverStick = new Joystick(Constants.driveStickPort);
+    public static OverrideableJoystick driverStick = new OverrideableJoystick(Constants.driveStickPort);
 
       /*================================/ 
      /===========Drive Train===========/

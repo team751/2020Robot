@@ -23,6 +23,8 @@ import frc.robot.core751.subsystems.DifferentialDriveTrain;
 import frc.robot.core751.subsystems.LightStrip;
 import frc.robot.subsystems.*;
 import frc.robot.commands.SimpleAuton;
+import frc.robot.core751.commands.JoystickPlayer;
+import frc.robot.core751.commands.JoystickRecorder;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -40,7 +42,7 @@ public class RobotContainer {
 
   private final DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain(Constants.leftDrivetrainIDs, Constants.rightDrivetrainIDs, Constants.driveTrainMotorType, Constants.driveMotorProfile, Constants.driveInvertLeft, Constants.driveInvertRight);
   private final ReversableArcadeDrive reversableArcadeDrive = new ReversableArcadeDrive(Constants.driverStick, differentialDriveTrain);
-  private final SwitchDriveDirection switchDriveDirection = new SwitchDriveDirection(differentialDriveTrain);
+  private final SwitchDriveDirection switchDriveDirection = new SwitchDriveDirection(differentialDriveTrain, 0, 1);
 
   private final LightStrip[] lightStrips = new LightStrip[] {
     new LightStrip(Constants.FTLEDstart, Constants.FTLEDLength, Constants.FTLEDOrientation),
@@ -55,22 +57,21 @@ public class RobotContainer {
   private final RotateThenSelect rotateThenSelect = new RotateThenSelect(panel, lightStrips);
   private final TogglePanelPosition togglePanelPosition = new TogglePanelPosition(panel);
 
-  private Camera camera;
+  private final Camera camera0 = new Camera(0);
+  private final Camera camera1 = new Camera(1);
 
   private final Ball ball = new Ball(Constants.ballIntakeMotorID, Constants.ballPolycordMotorID, Constants.ballOutakeMotorID);
   private final DefaultBall defaultBall = new DefaultBall(ball, Constants.driverStick, Constants.ballLBumper, Constants.ballRBumper, Constants.ballOutButton, Constants.ballReverseOutButton);
 
   private final PowerDistributionPanel pdp = new PowerDistributionPanel();
+  
+  private final JoystickRecorder joystickRecorder = new JoystickRecorder(Constants.driverStick);
+  private final JoystickPlayer joystickPlayer = new JoystickPlayer(Replay.array, Constants.driverStick);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    try {
-      this.camera = new Camera(0);
-    } catch (Exception e) {
-      System.out.println(e);
-    }
     //Configure the button bindings
     configureButtonBindings();
   }
@@ -101,6 +102,8 @@ public class RobotContainer {
     SmartDashboard.putData(goToColor);
     SmartDashboard.putData(rotateWheel);
     SmartDashboard.putData(rotateThenSelect);
+    SmartDashboard.putData(joystickRecorder);
+    SmartDashboard.putData(joystickPlayer);
   }
 
 
